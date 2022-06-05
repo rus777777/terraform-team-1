@@ -1,4 +1,4 @@
-# terraform-team-1
+# Terraform project - Team-1 - VPC
 
 For team work:
 
