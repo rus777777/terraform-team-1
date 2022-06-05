@@ -2,7 +2,7 @@
 
 
 
-## <u>VPC group:</u>
+## VPC group:
 
 Module is published at Terraform Registry:
 ```
@@ -25,7 +25,9 @@ Members of VPC group can change it.
 * add comments 
 * refactoring (optimize) code if you want
 
-## <u>ASG group:</u>
+- - -
+
+## ASG group:
 
 ### Tasks (draft):
 
@@ -35,8 +37,8 @@ Members of VPC group can change it.
 * Undestand how to script installation wordpress with template
 * With Parker makes Golden Image
 
-
-## <u>RDS group:</u>
+- - -
+## RDS group:
 
 Added some draft code to launch RDS. Not finished yet.
 
