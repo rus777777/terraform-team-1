@@ -40,13 +40,27 @@ Members of VPC group can change it.
 - - -
 ## RDS group:
 
-Added some draft code to launch RDS. Not finished yet.
+Not finished yet.
 
-Login/Password is stored in Parameter Store.
+Added some draft code to launch RDS:
+
+* Not linked with our VPC
+* Login/Password is stored in Parameter Store.
+* RDS resides in public subnets to be accessible from Internet - easy to check.
+* Security Group is allow to access from Internet to port 3306
 
 
 ### Tasks (draft):
 * Define what input parameters need from VPC. You can fetch them from VPC backend located in S3.
 * Is RDS locate in private subnets?
 * In <writer/reader>.yourdomain.com: is <yourdomain.com> internal domain?
+* If RDS resides in private subnets, it could only accessable through the bastion host.
 * how to create DB in RDS, create/select table, fill table by script?
+
+- - -
+
+# Helpful links:
+
+Markdown Cheatsheet
+
+https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md
