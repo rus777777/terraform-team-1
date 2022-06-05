@@ -29,6 +29,8 @@ Members of VPC group can change it.
 
 ### Tasks (draft):
 
+* Define what input parameters need from VPC. You can fetch them from VPC backend located in S3.
+* Define what input parameters need from RDS. Fetch them from RDS backend or by RDS name?
 * Undestand how wordpress works
 * Undestand how to script installation wordpress with template
 * With Parker makes Golden Image
