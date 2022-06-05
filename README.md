@@ -4,7 +4,7 @@
 
 ## VPC group:
 
-Module is published at Terraform Registry:
+Module is published at Terraform Registry (https://registry.terraform.io/modules/rus777777/vpc-t1/aws/latest) :
 ```
 module "vpc-t1" {
   source  = "rus777777/vpc-t1/aws"
