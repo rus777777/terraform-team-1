@@ -7,3 +7,4 @@ min_size         = 1
 tags = {
   Name = "Terraform Project 1"
 }
+domain_name = "budaichiev.com"

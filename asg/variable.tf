@@ -47,3 +47,9 @@ variable "subnets" {
   default     = []
   description = "Please provide list of subnets"
 }
+
+variable "domain_name" {
+  type        = string
+  default     = ""
+  description = "Please provide domain name"
+}
