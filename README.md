@@ -21,7 +21,7 @@ Members of VPC group can change it.
 
 ### Tasks (draft):
 
-* Create some parameters to enable DNS (type bool) in vpc and subnets, it could be need for internal DB - negotiate with RDS group. Each parameter sets as input variable.
+* Create some parameters to enable DNS (type bool) in vpc and subnets, it could be need for internal DB - negotiate with RDS group. Each parameter sets as input variable. Default value set as for default VPC.
 * Make it stylish
 * Add comments, description
 * Refactoring (optimize) code if you want
