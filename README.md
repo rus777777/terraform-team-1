@@ -21,9 +21,10 @@ Members of VPC group can change it.
 
 ### Tasks (draft):
 
-* make it stylish
-* add comments 
-* refactoring (optimize) code if you want
+* Create some parameters to enable DNS (type bool) in vpc and subnets, it could be need for internal DB - negotiate with RDS group. Each parameter sets as input variable.
+* Make it stylish
+* Add comments, description
+* Refactoring (optimize) code if you want
 
 - - -
 
@@ -54,6 +55,7 @@ Added some draft code to launch RDS:
 * Define what input parameters need from VPC. You can fetch them from VPC backend located in S3.
 * Is RDS locate in private subnets?
 * In <writer/reader>.yourdomain.com: is <yourdomain.com> internal domain?
+* Negotiate with VPC group about certain parameters of VPC and subnet to enable DNS
 * If RDS resides in private subnets, it could only accessable through the bastion host.
 * how to create DB in RDS, create/select table, fill table by script?
 
