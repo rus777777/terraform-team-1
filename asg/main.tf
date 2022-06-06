@@ -55,7 +55,7 @@ data "aws_route53_zone" "this" {
 }
 
 resource "aws_route53_record" "wordpress" {
-  zone_id =  data.aws_route53_zone.this.zone_id
+  zone_id = data.aws_route53_zone.this.zone_id
   name    = "wordpress.${var.domain_name}"
   type    = "CNAME"
   ttl     = "300"
@@ -63,9 +63,9 @@ resource "aws_route53_record" "wordpress" {
 }
 
 resource "aws_launch_template" "this" {
-  name_prefix   = var.name_prefix
-  image_id      = local.ami_id
-  instance_type = var.instance_type
+  name_prefix            = var.name_prefix
+  image_id               = local.ami_id
+  instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.app.id]
 }
 
@@ -117,11 +117,11 @@ resource "aws_security_group" "elb" {
   vpc_id      = local.vpc_id
 
   ingress {
-    description      = "http from Internet"
-    from_port        = 80
-    to_port          = 80
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
+    description = "http from Internet"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
@@ -141,20 +141,29 @@ resource "aws_security_group" "app" {
   vpc_id      = local.vpc_id
 
   ingress {
-    description      = "http from Internet"
-    from_port        = 80
-    to_port          = 80
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
+    description     = "http from ELB"
+    from_port       = 80
+    to_port         = 80
+    protocol        = "tcp"
+    security_groups = [aws_security_group.elb.id]
   }
 
-  ingress {
-    description      = "http from Internet"
-    from_port        = 22
-    to_port          = 22
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
-  }
+  #   ingress {
+  #     description      = "http from Internet"
+  #     from_port        = 80
+  #     to_port          = 80
+  #     protocol         = "tcp"
+  #     cidr_blocks      = ["0.0.0.0/0"]
+  #   }
+
+  #   ingress {
+  #     description      = "http from Internet"
+  #     from_port        = 22
+  #     to_port          = 22
+  #     protocol         = "tcp"
+  #     cidr_blocks      = ["0.0.0.0/0"]
+  #   } 
+
   egress {
     from_port        = 0
     to_port          = 0
