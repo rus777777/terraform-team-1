@@ -68,5 +68,9 @@ Markdown Cheatsheet
 https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md
 
 
+Reference architecture
+
+https://docs.aws.amazon.com/whitepapers/latest/best-practices-wordpress/reference-architecture.html
+
 - - -
 
