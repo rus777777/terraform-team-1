@@ -21,7 +21,7 @@ Members of VPC group can change it.
 
 ### Tasks (draft):
 
-* Create some parameters to enable DNS (type bool) in vpc and subnets, it could be need for internal DB - negotiate with RDS group. Each parameter sets as input variable. Default value set as for default VPC.
+* Create some parameters to enable DNS (type bool) in vpc (enableDnsHostnames and enableDnsSupport) and subnets, it could be need for internal DB - negotiate with RDS group. Each parameter sets as input variable. Default value set as for default VPC.
 * Create parameter (input variable, type bool) to create NAT gateway for each privite subnets.
 * Add comments, description
 * Refactoring (optimize) code if you want
@@ -36,7 +36,7 @@ Members of VPC group can change it.
 * Define what input parameters need from RDS. Fetch them from RDS backend or by RDS name?
 * Undestand how wordpress works
 * Undestand how to script installation wordpress with template
-* With Parker makes Golden Image
+* Parker makes Golden Image
 
 - - -
 ## RDS group:
@@ -55,9 +55,9 @@ Added some draft code to launch RDS:
 * Define what input parameters need from VPC. You can fetch them from VPC backend located in S3.
 * Is RDS locate in private subnets?
 * In <writer/reader>.yourdomain.com: is <yourdomain.com> internal domain?
-* Negotiate with VPC group about certain parameters of VPC and subnet to enable DNS
+* Negotiate with VPC group about certain parameters of VPC (enableDnsHostnames and enableDnsSupport) and subnet to enable DNS
 * If RDS resides in private subnets, it could only accessable through the bastion host.
-* how to create DB in RDS, create/select table, fill table by script?
+* [bonus] how to create DB in RDS, create/select table, fill table by script?
 
 - - -
 
