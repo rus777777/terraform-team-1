@@ -1,16 +1,20 @@
-# Example how to use backend from VPC
+#  Example how to use VPC backend
 #
 # data "terraform_remote_state" "vpc" {
 #   backend = "s3"
 #   config = {
-#     # change backet name to  terraform-tfstate-<YOUR-NAME> 
-#     bucket = "terraform-tfstate-rus" # !!!
-    
+#  
+#     # change backet name to  terraform-tfstate-<YOUR-NAME>:
+#     # like
+#     # bucket = terraform-tfstate-rus 
+#     # OR use this variable 
+#     bucket = var.vpc_bucket
+#
 #     key    = "project-team-1/dev/vpc"
 #     region = "us-east-1"
 #   }
 # }
-
+#
 # output "vpc_id" {
 #   value = data.terraform_remote_state.vpc.outputs.vpc_id
 # }

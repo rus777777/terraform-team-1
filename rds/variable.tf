@@ -58,3 +58,8 @@ variable "publicly_accessible" {
   description = "Please provide a value"
 }
 
+variable "vpc_bucket" {
+  type        = string
+  default     = ""
+  description = "Please provide name of the VPC backend in next format terraform-tfstate-<YOUR-NAME>"
+}
