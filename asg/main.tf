@@ -1,7 +1,9 @@
 data "terraform_remote_state" "vpc" {
   backend = "s3"
   config = {
-    bucket = "terraform-tfstate-rus"
+    # change backet name to  terraform-tfstate-<YOUR-NAME> 
+    bucket = "terraform-tfstate-rus" # !!!
+    
     key    = "project-team-1/dev/vpc"
     region = "us-east-1"
   }
