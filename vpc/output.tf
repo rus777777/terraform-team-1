@@ -20,3 +20,12 @@ output "private_subnet2" {
 output "private_subnet3" {
   value = module.vpc-t1.private_subnet3
 }
+output "az1" {
+  value = module.vpc-t1.az1
+}
+output "az2" {
+  value = module.vpc-t1.az2
+}
+output "az3" {
+  value = module.vpc-t1.az3
+}
