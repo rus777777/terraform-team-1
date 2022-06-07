@@ -12,6 +12,13 @@ cd /var/www/html/
 # define('WP_MEMORY_LIMIT', '128M');
 # EOF
 
+export WORDPRESS_DB_NAME=${db_name}
+export WORDPRESS_DB_HOST=${db_host}
+export WORDPRESS_DB_USER=${db_user}
+export WORDPRESS_DB_PASSWORD=${db_password}
+export WORDPRESS_DB_PORT=${db_port}
+export WORDPRESS_TABLE_PREFIX=wp_
+
 chown -R apache:apache /var/www/html/
 systemctl enable httpd
 systemctl start httpd

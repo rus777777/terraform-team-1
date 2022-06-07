@@ -109,6 +109,7 @@ resource "aws_launch_template" "this" {
     db_user     = local.db_user,
     db_password = data.aws_ssm_parameter.db.value,
     db_host     = local.db_host
+    db_port     = local.db_port
   }))
 }
 
