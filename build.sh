@@ -17,7 +17,6 @@ echo ""
 terraform init && terraform apply -auto-approve
 cd ..
 
-
 # echo ""
 # echo "**********************************"
 # echo "create golden image with wordpress"
