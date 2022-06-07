@@ -23,6 +23,6 @@ output "name" {
   # Your code goes here 
   value = aws_db_instance.this.name
 }
-output username {
-    value = var.username
+output "username" {
+  value = var.username
 }
