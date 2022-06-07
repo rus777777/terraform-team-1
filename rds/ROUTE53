@@ -15,7 +15,7 @@ all_instanses = tolist(aws_rds_cluster_instance.wordpress_cluster_instance.*.end
 }        
 resource "aws_route53_record" "writer" {
     zone_id = var.ZONEID
-    name    = "writer.${var.DOMAIN}"
+    name    = "writer .${var.DOMAIN}"
     type    = "CNAME"
     ttl     = "300"
     records = [local.writer]
