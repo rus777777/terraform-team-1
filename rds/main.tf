@@ -23,7 +23,6 @@ locals {
   az3        = data.terraform_remote_state.vpc.outputs.az3
 }
 
-
 resource "random_password" "password" {
   length           = 20
   special          = true
@@ -31,25 +30,32 @@ resource "random_password" "password" {
 }
 
 resource "aws_ssm_parameter" "dbpass" {
-  name  = var.db_name
+  name  = var.username
   type  = "SecureString"
   value = random_password.password.result
 }
 
-resource "aws_db_instance" "default" {
-  allocated_storage      = var.allocated_storage
-  engine                 = var.engine
-  engine_version         = var.engine_version
-  instance_class         = var.instance_class
-  username               = var.username
-  db_name                = var.db_name
-  password               = random_password.password.result
-  parameter_group_name   = "default.mysql5.7"
-  skip_final_snapshot    = true
-  publicly_accessible    = var.publicly_accessible
+resource "aws_db_instance" "this" {
+  allocated_storage    = var.allocated_storage
+  engine               = var.engine
+  engine_version       = var.engine_version
+  instance_class       = var.instance_class
+  username             = var.username
+  db_name              = var.db_name
+  password             = random_password.password.result
+  parameter_group_name = "default.mysql5.7"
+  skip_final_snapshot  = true
+  publicly_accessible  = var.publicly_accessible
+
   vpc_security_group_ids = [aws_security_group.db.id]
   availability_zone      = local.az1
+  db_subnet_group_name   = aws_db_subnet_group.this.id
 
   tags = var.tags
 }
 
+resource "aws_db_subnet_group" "this" {
+  name       = "main"
+  subnet_ids = [local.ps1, local.ps2, local.ps3]
+  tags       = var.tags
+}

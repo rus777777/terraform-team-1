@@ -1,6 +1,8 @@
 
 resource "aws_security_group" "db" {
   name_prefix = "wordpress-db"
+  vpc_id      = local.vpc_id
+
   # Your code goes here 
 
   ingress {
