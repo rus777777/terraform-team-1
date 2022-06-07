@@ -1,9 +1,3 @@
-
-resource "aws_db_subnet_group" "this" {
-  name       = "wordpress_db_subnet"
-  subnet_ids = [local.ps1, local.ps2, local.ps3]
-  tags       = var.tags
-}
 # data "aws_availability_zones" "all" {}
 
 # output "AZ" {
