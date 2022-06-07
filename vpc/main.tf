@@ -9,7 +9,8 @@ module "vpc-t1" {
   private_subnet1 = var.private_subnet1
   private_subnet2 = var.private_subnet2
   private_subnet3 = var.private_subnet3
-
+  enable_dns_hostnames = true
+  enable_dns_support = true 
   enable_nat_gateway = var.enable_nat_gateway
 
   tags = var.tags

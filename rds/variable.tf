@@ -63,3 +63,14 @@ variable "vpc_bucket" {
   default     = ""
   description = "Please provide name of the VPC backend in next format terraform-tfstate-<YOUR-NAME>"
 }
+variable "subnet_ids" {
+  description = "private and public subnet ids"
+  type        = list(string)
+  default     = []
+}
+variable "domain" {
+  type        = string
+  default     = ""
+  description = "Please provide a domain"
+  
+}

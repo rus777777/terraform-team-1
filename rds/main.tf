@@ -34,7 +34,6 @@ resource "aws_ssm_parameter" "dbpass" {
   type  = "SecureString"
   value = random_password.password.result
 }
-
 resource "aws_db_instance" "this" {
   allocated_storage    = var.allocated_storage
   engine               = var.engine
@@ -54,8 +53,4 @@ resource "aws_db_instance" "this" {
   tags = var.tags
 }
 
-resource "aws_db_subnet_group" "this" {
-  name       = "main"
-  subnet_ids = [local.ps1, local.ps2, local.ps3]
-  tags       = var.tags
-}
+
