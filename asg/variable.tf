@@ -53,3 +53,15 @@ variable "domain_name" {
   default     = ""
   description = "Please provide domain name"
 }
+
+# variable "db_name" {
+#   type        = string
+#   default     = ""
+#   description = "Please provide a value"
+# }
+
+# variable "username" {
+#   type        = string
+#   default     = ""
+#   description = "Please provide a value"
+# }

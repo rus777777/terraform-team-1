@@ -8,3 +8,5 @@ tags = {
   Name = "Terraform Project 1"
 }
 domain_name = "budaichiev.com"
+# db_name     = "wordpress"
+# username    = "admin"
