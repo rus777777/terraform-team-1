@@ -1,9 +1,8 @@
 data "terraform_remote_state" "vpc" {
   backend = "s3"
   config = {
-    # change backet name to  terraform-tfstate-<YOUR-NAME> 
-    bucket = "terraform-tfstate-rus" # !!!
-    # bucket = "terraform-tfstate-${local.account_id}" # !!!
+    # you shoud have S3 backet with name: terraform-tfstate-<Account_ID> 
+    bucket = "terraform-tfstate-${local.account_id}" 
 
     key    = "project-team-1/dev/vpc"
     region = "us-east-1"
@@ -29,25 +28,24 @@ locals {
   ps3    = data.terraform_remote_state.vpc.outputs.public_subnet3
 
   account_id = data.aws_caller_identity.current.account_id
-  user_id    = data.aws_caller_identity.current.user_id
   ami_id     = data.aws_ami.this.image_id
 }
 
-output "vpc_info" {
-  value = data.terraform_remote_state.vpc.outputs
-}
+# output "vpc_info" {
+#   value = data.terraform_remote_state.vpc.outputs
+# }
 
-output "account_id" {
-  value = local.account_id
-}
+# output "account_id" {
+#   value = local.account_id
+# }
 
-output "user_id" {
-  value = local.user_id
-}
+# output "user_id" {
+#   value = local.user_id
+# }
 
-output "ami_id" {
-  value = local.ami_id
-}
+# output "ami_id" {
+#   value = local.ami_id
+# }
 
 data "aws_route53_zone" "this" {
   name         = var.domain_name

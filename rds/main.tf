@@ -1,23 +1,25 @@
-#  Example how to use VPC backend
-#
-# data "terraform_remote_state" "vpc" {
-#   backend = "s3"
-#   config = {
-#  
-#     # change backet name to  terraform-tfstate-<YOUR-NAME>:
-#     # like
-#     # bucket = terraform-tfstate-rus 
-#     # OR use this variable 
-#     bucket = var.vpc_bucket
-#
-#     key    = "project-team-1/dev/vpc"
-#     region = "us-east-1"
-#   }
-# }
-#
-# output "vpc_id" {
-#   value = data.terraform_remote_state.vpc.outputs.vpc_id
-# }
+# read data from created VPC
+data "terraform_remote_state" "vpc" {
+  backend = "s3"
+  config = {
+    # you shoud have S3 backet with name: terraform-tfstate-<Account_ID> 
+    bucket = "terraform-tfstate-${local.account_id}" 
+
+    key    = "project-team-1/dev/vpc"
+    region = "us-east-1"
+  }
+}
+
+data "aws_caller_identity" "current" {}
+
+locals {
+  vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
+  ps1    = data.terraform_remote_state.vpc.outputs.public_subnet1
+  ps2    = data.terraform_remote_state.vpc.outputs.public_subnet2
+  ps3    = data.terraform_remote_state.vpc.outputs.public_subnet3
+  account_id = data.aws_caller_identity.current.account_id
+}
+
 
 resource "random_password" "password" {
   length           = 20
