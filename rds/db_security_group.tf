@@ -1,12 +1,12 @@
 
-resource "aws_security_group" "db" {
-  name_prefix = "wordpress-sg"
-  description = " Allow ssh and http from the VPC components to the instance "
+resource "aws_security_group" "db_security" {
+  name_prefix = "db-secgroup"
   vpc_id      = local.vpc_id
 
   # Your code goes here 
 
   ingress {
+    description = "MySQL"
     from_port   = 3306
     to_port     = 3306
     protocol    = "tcp"

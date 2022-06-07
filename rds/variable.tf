@@ -14,19 +14,19 @@ variable "allocated_storage" {
   description = "Please provide a value"
 }
 
-variable "engine" {
+variable "db_engine" {
   type        = string
   default     = ""
   description = "Please provide a value"
 }
 
-variable "engine_version" {
+variable "db_engine_version" {
   type        = string
   default     = ""
   description = "Please provide a value"
 }
 
-variable "instance_class" {
+variable "db_instance_class" {
   type        = string
   default     = ""
   description = "Please provide a value"
@@ -39,13 +39,13 @@ variable "db_name" {
 }
 
 
-variable "username" {
+variable "db_username" {
   type        = string
   default     = ""
   description = "Please provide a value"
 }
 
-variable "password" {
+variable "db_password" {
   type        = string
   default     = ""
   description = "Please provide a value"
