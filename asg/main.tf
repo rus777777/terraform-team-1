@@ -1,15 +1,24 @@
+data "aws_caller_identity" "current" {}
+
 data "terraform_remote_state" "vpc" {
   backend = "s3"
   config = {
     # you shoud have S3 backet with name: terraform-tfstate-<Account_ID> 
-    bucket = "terraform-tfstate-${local.account_id}" 
-
+    bucket = "terraform-tfstate-${local.account_id}"
     key    = "project-team-1/dev/vpc"
     region = "us-east-1"
   }
 }
 
-data "aws_caller_identity" "current" {}
+data "terraform_remote_state" "rds" {
+  backend = "s3"
+  config = {
+    # you shoud have S3 backet with name: terraform-tfstate-<Account_ID> 
+    bucket = "terraform-tfstate-${local.account_id}"
+    key    = "project-team-1/dev/rds"
+    region = "us-east-1"
+  }
+}
 
 data "aws_ami" "this" {
   most_recent = true
@@ -29,7 +38,27 @@ locals {
 
   account_id = data.aws_caller_identity.current.account_id
   ami_id     = data.aws_ami.this.image_id
+
+  db_name = data.terraform_remote_state.rds.outputs.name
+  db_user = data.terraform_remote_state.rds.outputs.username
+
+  db_host = data.terraform_remote_state.rds.outputs.address
+  db_port = data.terraform_remote_state.rds.outputs.port
 }
+
+# for testing only !!!
+output "db_name" {
+  value = local.db_name
+}
+output "db_user" {
+  value = local.db_user
+}
+output "db_host" {
+  value = local.db_host
+}
+
+
+
 
 # output "vpc_info" {
 #   value = data.terraform_remote_state.vpc.outputs
@@ -47,6 +76,12 @@ locals {
 #   value = local.ami_id
 # }
 
+
+# data "aws_ssm_parameter" "dbpass" {
+#   name  = var.username
+# }
+
+
 data "aws_route53_zone" "this" {
   name         = var.domain_name
   private_zone = false
@@ -60,11 +95,23 @@ resource "aws_route53_record" "wordpress" {
   records = [aws_elb.this.dns_name]
 }
 
+data "aws_ssm_parameter" "db" {
+  name = local.db_user
+}
+
+
 resource "aws_launch_template" "this" {
   name_prefix            = var.name_prefix
   image_id               = local.ami_id
   instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.app.id]
+
+  user_data = base64encode (templatefile("user_data.sh.tpl", {
+    db_name     = local.db_name,
+    db_user     = local.db_user,
+    db_password = data.aws_ssm_parameter.db.value,
+    db_host     = local.db_host
+  }))
 }
 
 resource "aws_autoscaling_group" "this" {
@@ -148,11 +195,12 @@ resource "aws_security_group" "app" {
 
   # for test purpose
   ingress {
-    description     = "ssh from ELB"
-    from_port       = 22
-    to_port         = 22
-    protocol        = "tcp"
-    security_groups = [aws_security_group.elb.id]
+    description = "ssh from ELB"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    #security_groups = [aws_security_group.elb.id]
   }
 
   egress {
