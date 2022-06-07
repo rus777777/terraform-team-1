@@ -146,6 +146,15 @@ resource "aws_security_group" "app" {
     security_groups = [aws_security_group.elb.id]
   }
 
+  # for test purpose
+  ingress {
+    description     = "ssh from ELB"
+    from_port       = 22
+    to_port         = 22
+    protocol        = "tcp"
+    security_groups = [aws_security_group.elb.id]
+  }
+
   egress {
     from_port        = 0
     to_port          = 0
