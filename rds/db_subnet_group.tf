@@ -1,8 +1,8 @@
 
 resource "aws_db_subnet_group" "this" {
-  db_subnet_group_name   = aws_db_subnet_group.this.id
-  subnet_ids = [local.ps1, local.ps2, local.ps3]
-  tags       = var.tags
+  db_subnet_group_name = aws_db_subnet_group.this.id
+  subnet_ids           = [local.ps1, local.ps2, local.ps3]
+  tags                 = var.tags
 }
 # data "aws_availability_zones" "all" {}
 

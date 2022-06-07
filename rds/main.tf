@@ -43,12 +43,12 @@ resource "aws_db_instance" "this" {
   instance_class       = var.instance_class
   username             = var.username
   db_name              = var.db_name
-  password             = random_password.password.result 
+  password             = random_password.password.result
   parameter_group_name = "default.mysql5.7"
   skip_final_snapshot  = true
   publicly_accessible  = var.publicly_accessible
 
-# copy from this place !!!
+  # copy from this place !!!
   vpc_security_group_ids = [aws_security_group.db.id]
   availability_zone      = local.az1
   db_subnet_group_name   = aws_db_subnet_group.this.id
