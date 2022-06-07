@@ -26,6 +26,22 @@ cd ..
 # make build
 # cd ../..
 
+# echo ""
+# echo "**********************************"
+# echo "create RDS"
+# echo "**********************************"
+# echo ""
+# cd rds
+# echo ""
+# echo "Input parameters:"
+# echo ""
+# cat terraform.tfvars
+# echo ""
+# echo "**********************************"
+# echo ""
+# terraform init && terraform apply -auto-approve
+# cd ..
+
 echo ""
 echo "**********************************"
 echo "create ALB/ASG"
@@ -41,6 +57,7 @@ echo "**********************************"
 echo ""
 terraform init && terraform apply -auto-approve
 cd ..
+
 echo ""
 echo ""
 echo "**********************************"

@@ -3,7 +3,7 @@ data "terraform_remote_state" "vpc" {
   backend = "s3"
   config = {
     # you shoud have S3 backet with name: terraform-tfstate-<Account_ID> 
-    bucket = "terraform-tfstate-${local.account_id}" 
+    bucket = "terraform-tfstate-${local.account_id}"
 
     key    = "project-team-1/dev/vpc"
     region = "us-east-1"
@@ -13,11 +13,14 @@ data "terraform_remote_state" "vpc" {
 data "aws_caller_identity" "current" {}
 
 locals {
-  vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
-  ps1    = data.terraform_remote_state.vpc.outputs.public_subnet1
-  ps2    = data.terraform_remote_state.vpc.outputs.public_subnet2
-  ps3    = data.terraform_remote_state.vpc.outputs.public_subnet3
   account_id = data.aws_caller_identity.current.account_id
+  vpc_id     = data.terraform_remote_state.vpc.outputs.vpc_id
+  ps1        = data.terraform_remote_state.vpc.outputs.public_subnet1
+  ps2        = data.terraform_remote_state.vpc.outputs.public_subnet2
+  ps3        = data.terraform_remote_state.vpc.outputs.public_subnet3
+  az1        = data.terraform_remote_state.vpc.outputs.az1
+  az2        = data.terraform_remote_state.vpc.outputs.az2
+  az3        = data.terraform_remote_state.vpc.outputs.az3
 }
 
 
@@ -45,6 +48,7 @@ resource "aws_db_instance" "default" {
   skip_final_snapshot    = true
   publicly_accessible    = var.publicly_accessible
   vpc_security_group_ids = [aws_security_group.db.id]
+  availability_zone      = local.az1
 
   tags = var.tags
 }
