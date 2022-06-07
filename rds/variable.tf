@@ -72,11 +72,11 @@ variable "domain" {
   type        = string
   default     = ""
   description = "Please provide a domain"
-  
 }
-variable "ZONEID" {
-  type        = string
-  default     = ""
-  description = "Please provide a zone id"
+
+# variable "ZONEID" {
+#   type        = string
+#   default     = ""
+#   description = "Please provide a zone id"
   
-}
+# }

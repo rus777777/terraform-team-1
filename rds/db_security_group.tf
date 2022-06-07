@@ -1,5 +1,5 @@
 
-resource "aws_security_group" "wordpress_sg" {
+resource "aws_security_group" "db" {
   name_prefix = "wordpress-sg"
   description = " Allow ssh and http from the VPC components to the instance "
   vpc_id      = local.vpc_id
