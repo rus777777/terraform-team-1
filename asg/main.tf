@@ -58,8 +58,6 @@ output "db_host" {
 }
 
 
-
-
 # output "vpc_info" {
 #   value = data.terraform_remote_state.vpc.outputs
 # }
