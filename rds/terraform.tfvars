@@ -9,6 +9,7 @@ master_username     = "admin"
 master_password = "bar"
 publicly_accessible = true
 domain = "zmileproperties.com"
+ZONEID = "Z00684521QJRR8IXV8VWM"
 
 tags = {
   Name = "Terraform project"

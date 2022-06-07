@@ -5,7 +5,7 @@ data "terraform_remote_state" "vpc" {
     # you shoud have S3 backet with name: terraform-tfstate-<Account_ID> 
     bucket = "terraform-tfstate-${local.account_id}"
 
-    key    = "project-team-1/dev/vpc"
+    key    = "project-team-1/dev/rds"
     region = "us-east-1"
   }
 }

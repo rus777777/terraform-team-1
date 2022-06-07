@@ -74,3 +74,9 @@ variable "domain" {
   description = "Please provide a domain"
   
 }
+variable "ZONEID" {
+  type        = string
+  default     = ""
+  description = "Please provide a zone id"
+  
+}
