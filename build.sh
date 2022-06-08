@@ -15,7 +15,7 @@ cat terraform.tfvars
 echo ""
 echo "**********************************"
 echo ""
-terraform init && terraform apply -auto-approve
+terraform init -upgrade && terraform apply -auto-approve
 cd ..
 
 # echo ""
