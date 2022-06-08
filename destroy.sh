@@ -1,7 +1,7 @@
 #!/bin/bash
-
 clear
-
+echo "Start:" > td.tmp
+date >> td.tmp
 echo ""
 echo "**********************************"
 echo "destroy ALB/ASG"
@@ -36,6 +36,9 @@ echo "**********************************"
 echo "Finish! :)"
 echo "**********************************"
 echo ""
-
+echo "Finish:" >> td.tmp
+date >> td.tmp
+cat td.tmp
+rm -rf td.tmp
 
 # bash destroy.sh
