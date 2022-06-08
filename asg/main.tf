@@ -104,7 +104,7 @@ resource "aws_launch_template" "this" {
   instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.app.id]
 
-  user_data = base64encode (templatefile("user_data.sh.tpl", {
+  user_data = base64encode(templatefile("user_data.sh.tpl", {
     db_name     = local.db_name,
     db_user     = local.db_user,
     db_password = data.aws_ssm_parameter.db.value,
