@@ -7,6 +7,9 @@ db_name             = "wordpress"
 username            = "admin"
 publicly_accessible = true
 
+
 tags = {
   Name = "Terraform project"
 }
+
+#enable_RDS_in_public_subnets = false

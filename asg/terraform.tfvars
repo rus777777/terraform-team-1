@@ -8,5 +8,5 @@ tags = {
   Name = "Terraform Project 1"
 }
 domain_name = "budaichiev.com"
-# db_name     = "wordpress"
-# username    = "admin"
+# enable_ASG_in_public_subnets = false
+

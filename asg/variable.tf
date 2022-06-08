@@ -54,6 +54,13 @@ variable "domain_name" {
   description = "Please provide domain name"
 }
 
+variable "enable_ASG_in_public_subnets" {
+  type        = bool
+  default     = true
+  description = "Enable launch ASG instances in public subnets"
+}
+
+
 # variable "db_name" {
 #   type        = string
 #   default     = ""

@@ -63,3 +63,9 @@ variable "vpc_bucket" {
   default     = ""
   description = "Please provide name of the VPC backend in next format terraform-tfstate-<YOUR-NAME>"
 }
+
+variable "enable_RDS_in_public_subnets" {
+  type        = bool
+  default     = true
+  description = "Enable RDS in public subnets"
+}
