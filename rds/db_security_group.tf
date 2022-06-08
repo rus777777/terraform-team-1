@@ -1,6 +1,6 @@
 
-resource "aws_security_group" "db_security" {
-  name_prefix = "db-secgroup"
+resource "aws_security_group" "db" {
+  name_prefix = "wordpress-db"
   vpc_id      = local.vpc_id
 
   # Your code goes here 
@@ -13,11 +13,11 @@ resource "aws_security_group" "db_security" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   egress {
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
-  } 
+  }
 
   # Please do not change the code below
   tags = var.tags

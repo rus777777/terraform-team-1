@@ -14,19 +14,19 @@ variable "allocated_storage" {
   description = "Please provide a value"
 }
 
-variable "db_engine" {
+variable "engine" {
   type        = string
   default     = ""
   description = "Please provide a value"
 }
 
-variable "db_engine_version" {
+variable "engine_version" {
   type        = string
   default     = ""
   description = "Please provide a value"
 }
 
-variable "db_instance_class" {
+variable "instance_class" {
   type        = string
   default     = ""
   description = "Please provide a value"
@@ -73,10 +73,30 @@ variable "domain" {
   default     = ""
   description = "Please provide a domain"
 }
+variable "number_of_instances" {
+  type        = string
+  default     = ""
+  description = "Please provide a domain"
 
+}
+variable "cluster_engine" {
+  type        = string
+  default     = ""
+  description = "Please provide a value"
+}
+variable "cluster_engine_version" {
+  type        = string
+  default     = ""
+  description = "Please provide a value"
+}
+variable "cluster_instance_class" {
+  type        = string
+  default     = ""
+  description = "Please provide a value"
+}
 # variable "ZONEID" {
 #   type        = string
 #   default     = ""
 #   description = "Please provide a zone id"
-  
+
 # }

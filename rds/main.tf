@@ -29,8 +29,8 @@ resource "random_password" "password" {
   override_special = "!#$%&*()-_=+[]{}<>:?"
 }
 
-resource "aws_ssm_parameter" "dbpass" {
-  name  = var.username
+resource "aws_ssm_parameter" "db_username" {
+  name  = var.db_username
   type  = "SecureString"
   value = random_password.password.result
 }
@@ -41,18 +41,15 @@ resource "aws_db_instance" "this" {
   engine               = var.engine
   engine_version       = var.engine_version
   instance_class       = var.instance_class
-  username             = var.username
+  username             = aws_ssm_parameter.db_username.name
   db_name              = var.db_name
-  password             = random_password.password.result 
+  password             = random_password.password.result
   parameter_group_name = "default.mysql5.7"
   skip_final_snapshot  = true
   publicly_accessible  = var.publicly_accessible
-
-# copy from this place !!!
   vpc_security_group_ids = [aws_security_group.db.id]
   availability_zone      = local.az1
   db_subnet_group_name   = aws_db_subnet_group.this.id
-
   tags = var.tags
 }
 

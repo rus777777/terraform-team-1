@@ -24,5 +24,5 @@ output "name" {
   value = aws_db_instance.this.name
 }
 output "username" {
-  value = var.username
+  value = var.db_username
 }
