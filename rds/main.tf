@@ -47,6 +47,11 @@ resource "aws_db_instance" "this" {
   parameter_group_name = "default.mysql5.7"
   skip_final_snapshot  = true
   publicly_accessible  = var.publicly_accessible
+<<<<<<< HEAD
+=======
+
+  # copy from this place !!!
+>>>>>>> 7feb89039eea4086d6026e8caa2ff00c2c275a48
   vpc_security_group_ids = [aws_security_group.db.id]
   availability_zone      = local.az1
   db_subnet_group_name   = aws_db_subnet_group.this.id

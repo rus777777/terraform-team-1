@@ -1,7 +1,13 @@
 resource "aws_db_subnet_group" "this" {
+<<<<<<< HEAD
   name       = "main"
   subnet_ids = [local.ps1, local.ps2, local.ps3]
   tags       = var.tags
+=======
+  db_subnet_group_name = aws_db_subnet_group.this.id
+  subnet_ids           = [local.ps1, local.ps2, local.ps3]
+  tags                 = var.tags
+>>>>>>> 7feb89039eea4086d6026e8caa2ff00c2c275a48
 }
 # data "aws_availability_zones" "all" {}
 
