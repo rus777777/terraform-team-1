@@ -36,6 +36,10 @@ locals {
   ps2    = data.terraform_remote_state.vpc.outputs.public_subnet2
   ps3    = data.terraform_remote_state.vpc.outputs.public_subnet3
 
+  pr1    = data.terraform_remote_state.vpc.outputs.private_subnet1
+  pr2    = data.terraform_remote_state.vpc.outputs.private_subnet2
+  pr3    = data.terraform_remote_state.vpc.outputs.private_subnet3
+
   account_id = data.aws_caller_identity.current.account_id
   ami_id     = data.aws_ami.this.image_id
 
@@ -47,12 +51,12 @@ locals {
 }
 
 # for testing only !!!
-output "db_name" {
-  value = local.db_name
-}
-output "db_user" {
-  value = local.db_user
-}
+# output "db_name" {
+#   value = local.db_name
+# }
+# output "db_user" {
+#   value = local.db_user
+# }
 output "db_host" {
   value = local.db_host
 }
@@ -114,7 +118,7 @@ resource "aws_launch_template" "this" {
 }
 
 resource "aws_autoscaling_group" "this" {
-  vpc_zone_identifier = [local.ps1, local.ps2, local.ps3]
+  vpc_zone_identifier = var.enable_ASG_in_public_subnets ? [local.ps1, local.ps2, local.ps3] : [local.pr1, local.pr2, local.pr3]
   desired_capacity    = var.desired_capacity
   max_size            = var.max_size
   min_size            = var.min_size
@@ -127,7 +131,7 @@ resource "aws_autoscaling_group" "this" {
 
 resource "aws_elb" "this" {
   name    = "${var.name_prefix}-ELB"
-  subnets = [local.ps1, local.ps2, local.ps3]
+  subnets = var.enable_ASG_in_public_subnets ? [local.ps1, local.ps2, local.ps3] : [local.pr1, local.pr2, local.pr3]
 
   listener {
     instance_port     = 80

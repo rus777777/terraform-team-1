@@ -38,6 +38,8 @@ build {
   ]
   provisioner "shell" {
     inline = [
+      # telnet for troubleshooting
+      "sudo yum install telnet -y",
       "sudo yum install httpd -y",
       "sudo yum install php php-mysql -y",
       "sudo yum install wget -y",

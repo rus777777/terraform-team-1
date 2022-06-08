@@ -5,11 +5,11 @@ engine_version      = "5.7"
 instance_class      = "db.t3.micro"
 db_name             = "wordpress"
 username            = "admin"
-publicly_accessible = true
+publicly_accessible = false
 
 
 tags = {
   Name = "Terraform project"
 }
 
-#enable_RDS_in_public_subnets = false
+enable_RDS_in_public_subnets = false

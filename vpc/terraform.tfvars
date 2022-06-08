@@ -8,6 +8,7 @@ private_subnet2    = "10.0.102.0/24"
 private_subnet3    = "10.0.103.0/24"
 enable_nat_gateway = false
 
+
 tags = {
   Name = "Terraform project"
   Team = "Team 1"
