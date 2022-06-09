@@ -126,7 +126,7 @@ Project description
 
 # Org structure (1 page)
 
-Members of:
+* Team leader
 * VPC group
 * RDS group
 * ASG group
