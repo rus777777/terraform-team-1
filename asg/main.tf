@@ -36,9 +36,9 @@ locals {
   ps2    = data.terraform_remote_state.vpc.outputs.public_subnet2
   ps3    = data.terraform_remote_state.vpc.outputs.public_subnet3
 
-  pr1    = data.terraform_remote_state.vpc.outputs.private_subnet1
-  pr2    = data.terraform_remote_state.vpc.outputs.private_subnet2
-  pr3    = data.terraform_remote_state.vpc.outputs.private_subnet3
+  pr1 = data.terraform_remote_state.vpc.outputs.private_subnet1
+  pr2 = data.terraform_remote_state.vpc.outputs.private_subnet2
+  pr3 = data.terraform_remote_state.vpc.outputs.private_subnet3
 
   account_id = data.aws_caller_identity.current.account_id
   ami_id     = data.aws_ami.this.image_id
@@ -50,39 +50,10 @@ locals {
   db_port = data.terraform_remote_state.rds.outputs.port
 }
 
-# for testing only !!!
-# output "db_name" {
-#   value = local.db_name
-# }
-# output "db_user" {
-#   value = local.db_user
-# }
+# !!!!!!!!!! for test
 output "db_host" {
   value = local.db_host
 }
-
-
-# output "vpc_info" {
-#   value = data.terraform_remote_state.vpc.outputs
-# }
-
-# output "account_id" {
-#   value = local.account_id
-# }
-
-# output "user_id" {
-#   value = local.user_id
-# }
-
-# output "ami_id" {
-#   value = local.ami_id
-# }
-
-
-# data "aws_ssm_parameter" "dbpass" {
-#   name  = var.username
-# }
-
 
 data "aws_route53_zone" "this" {
   name         = var.domain_name
@@ -93,7 +64,7 @@ resource "aws_route53_record" "wordpress" {
   zone_id = data.aws_route53_zone.this.zone_id
   name    = "wordpress.${var.domain_name}"
   type    = "CNAME"
-  ttl     = "300"
+  ttl     = "60" # descrease to test purpose, deafult 300
   records = [aws_elb.this.dns_name]
 }
 
@@ -131,7 +102,7 @@ resource "aws_autoscaling_group" "this" {
 
 resource "aws_elb" "this" {
   name    = "${var.name_prefix}-ELB"
-  subnets = var.enable_ASG_in_public_subnets ? [local.ps1, local.ps2, local.ps3] : [local.pr1, local.pr2, local.pr3]
+  subnets = [local.ps1, local.ps2, local.ps3]
 
   listener {
     instance_port     = 80

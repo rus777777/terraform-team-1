@@ -4,8 +4,8 @@
 
 Before building project set input variables!
 
-* copy them to ~/.bashrc 
-* OR copy and run in CLI before run terraform command
+* copy them to ~/.bashrc and reopen your terminal
+* OR run them in CLI before run terraform command
 
 They look like:
 ```

@@ -20,7 +20,7 @@ locals {
   ps3        = data.terraform_remote_state.vpc.outputs.public_subnet3
   pr1        = data.terraform_remote_state.vpc.outputs.private_subnet1
   pr2        = data.terraform_remote_state.vpc.outputs.private_subnet2
-  pr3        = data.terraform_remote_state.vpc.outputs.private_subnet3 
+  pr3        = data.terraform_remote_state.vpc.outputs.private_subnet3
   az1        = data.terraform_remote_state.vpc.outputs.az1
   az2        = data.terraform_remote_state.vpc.outputs.az2
   az3        = data.terraform_remote_state.vpc.outputs.az3
@@ -33,9 +33,10 @@ resource "random_password" "password" {
 }
 
 resource "aws_ssm_parameter" "dbpass" {
-  name  = var.username
-  type  = "SecureString"
-  value = random_password.password.result
+  name      = var.username
+  type      = "SecureString"
+  value     = random_password.password.result
+  overwrite = true
 }
 
 resource "aws_db_instance" "this" {
@@ -59,6 +60,6 @@ resource "aws_db_instance" "this" {
 
 resource "aws_db_subnet_group" "this" {
   name       = "main"
-  subnet_ids = var.enable_RDS_in_public_subnets ? [local.ps1, local.ps2,local.ps3] : [local.pr1, local.pr2, local.pr3] 
+  subnet_ids = var.enable_RDS_in_public_subnets ? [local.ps1, local.ps2, local.ps3] : [local.pr1, local.pr2, local.pr3]
   tags       = var.tags
 }

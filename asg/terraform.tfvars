@@ -9,5 +9,5 @@ tags = {
 }
 #domain_name = "budaichiev.com"             # declare as export variable TF_VAR_domain_name
 
-#enable_ASG_in_public_subnets = false
+enable_ASG_in_public_subnets = false
 
