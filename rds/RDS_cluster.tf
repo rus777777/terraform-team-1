@@ -3,9 +3,11 @@ resource "aws_rds_cluster" "wordpress_db_cluster" {
   engine                  = var.cluster_engine
   engine_version          = var.cluster_engine_version
   enable_http_endpoint    = true
-  database_name           = aws_db_instance.this.name
-  master_username         = aws_db_instance.this.username
-  master_password         = aws_db_instance.this.password
+
+  database_name           = var.db_name
+  master_username         = var.db_username
+  master_password         = random_password.password.result
+
   skip_final_snapshot     = true
   db_subnet_group_name    = aws_db_subnet_group.this.id
   vpc_security_group_ids  = [aws_security_group.db.id]

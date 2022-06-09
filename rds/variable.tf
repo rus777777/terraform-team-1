@@ -7,7 +7,6 @@ variable "tags" {
   type        = map(any)
   default     = {}
 }
-
 variable "allocated_storage" {
   type        = string
   default     = ""
