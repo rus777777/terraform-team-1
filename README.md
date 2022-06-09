@@ -110,23 +110,23 @@ Project description
 
 * Project tasks:
   * create infrustructure architecture 
-  * the size of the resources
+  * the size of the resources (could be parameterized)
   * determine dependencies between groups 
   * flexibility of the code
   * make regionless dependency
     * deploy into another region with a few clicks
     * resources should not depend on specific region
 
-
 * Team communication:
   * How to negotatate with groups inside team
-    * chat channel
+    * chat channel (telegram)
     * zoom
     * etc
   * which backends we use
 
 # Org structure (1 page)
 
+Members of:
 * VPC group
 * RDS group
 * ASG group
@@ -135,21 +135,29 @@ Project description
 
 * Current infrastructure of our Project -  Anelia will share later
 
-* create primitive model (prototype) of our project
+* create primitive model (prototype) of our project to negotiate beetwen groups
 
 # VPC (1-3 pages)
 
 * make base for other groups - RDS, ASG should not wait
+* VPC organise as a Terraform mudule
+* module published in Terraform Registry for public use
 
 VPC
-3 public subnets
-3 private subnets
+* 3 public subnets
+* 3 private subnets
+* 1 GW
+* (depend on parameter) NAT GW 
 
 # RDS (1-3 pages)
 
 * RDS instanse -  for simple model - ASG should not wait
 * using resources Aurora cluster
-* 
+* publish in Route53:
+  * writer.yourdomain.com
+  * reader1.yourdomain.com
+  * reader2.yourdomain.com
+  * reader3.yourdomain.com
 
 # ASG (1-3 pages)
 
@@ -158,8 +166,12 @@ VPC
   * not depend on region
   * not depend on AWS account
 * ASG template - automaticale choose latest golden image
-* automative script to startup Wordpress and connect to DB
-* templatefile 
+  * use templatefile() for dynamic create file with needed parameters
+* userdata
+  * automative script to startup Wordpress and connect to DB
+
+
+* wordpress is accessable through ALB by address <b>wordpress.yourdomain.com</b>
 
 # Outputs (1 page)
 
@@ -167,7 +179,7 @@ VPC
   * flexibility of the code 
   * deploy into another region with a few clicks
   * expirience 3-tire architecture
-  * undestood every stage of the project
+  * undestood every stage of the project, correlation between groups 
   * 
 
 * what we learn from this project 
