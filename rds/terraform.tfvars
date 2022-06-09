@@ -1,4 +1,4 @@
-region              = "us-east-1"
+#region             = "us-east-1"           # declare as export variable TF_VAR_region
 allocated_storage   = 20
 engine              = "mysql"
 engine_version      = "5.7"

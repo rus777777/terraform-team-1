@@ -11,6 +11,8 @@ cd vpc
 echo ""
 echo "Input parameters:"
 echo ""
+env | grep TF_VAR_*
+env | grep PKR_VAR_*
 cat terraform.tfvars
 echo ""
 echo "**********************************"
@@ -18,14 +20,14 @@ echo ""
 terraform init -upgrade && terraform apply -auto-approve
 cd ..
 
-# echo ""
-# echo "**********************************"
-# echo "create golden image with wordpress"
-# echo "**********************************"
-# echo ""
-# cd  asg/packer
-# make build
-# cd ../..
+echo ""
+echo "**********************************"
+echo "create golden image with wordpress"
+echo "**********************************"
+echo ""
+cd  asg/packer
+make build
+cd ../..
 
 echo ""
 echo "**********************************"

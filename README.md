@@ -1,5 +1,31 @@
 # Terraform project: Team-1 - AWS
 
+# Setup input parameters
+
+Before building project set input variables!
+
+* copy them to ~/.bashrc 
+* OR copy and run in CLI before run terraform command
+
+They look like:
+```
+export TF_VAR_region=us-west-1
+export PKR_VAR_region=$TF_VAR_region
+export TF_VAR_domain_name=budaichiev.com
+```
+
+# To build Project
+
+Run command
+```
+bash build.sh
+```
+# To destroy project
+
+Run command:
+```
+bash destroy.sh
+```
 
 
 ## VPC group:

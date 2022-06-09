@@ -13,7 +13,7 @@ source "amazon-ebs" "image" {
   ssh_keypair_name     = "packer" # from VM where you launch this code
   instance_type        = "t2.micro"
   ssh_username         = "ec2-user"
-  region               = "us-east-1"
+  region               = var.region
 
   # find latest Amazon Linux 2 
   source_ami_filter {
