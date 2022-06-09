@@ -104,25 +104,66 @@ https://docs.aws.amazon.com/whitepapers/latest/best-practices-wordpress/referenc
 
 # Project 
 
-description
+Project description
 
-# Project goals
+# Project goals (1 page)
 
-* Project tasks
-* How to negotatate with groups inside team
+* Project tasks:
+  * create infrustructure architecture 
+  * the size of the resources
+  * determine dependencies between groups 
+  * flexibility of the code
+  * make regionless dependency
+    * deploy into another region with a few clicks
+    * resources should not depend on specific region
 
-# Org structure
 
-* Team leader
+* Team communication:
+  * How to negotatate with groups inside team
+    * chat channel
+    * zoom
+    * etc
+  * which backends we use
+
+# Org structure (1 page)
+
 * VPC group
 * RDS group
 * ASG group
 
-# Infrastructure architecture
+# Infrastructure architecture (1 page)
 
-# VPC
+* Current infrastructure of our Project -  Anelia will share later
 
-# RDS
+* create primitive model (prototype) of our project
 
-# ASG
+# VPC (1-3 pages)
 
+* make base for other groups - RDS, ASG should not wait
+
+VPC
+3 public subnets
+3 private subnets
+
+# RDS (1-3 pages)
+
+* RDS instanse -  for simple model - ASG should not wait
+* using resources Aurora cluster
+* 
+
+# ASG (1-3 pages)
+
+* depend on VPC, RDS groups
+* Packer - for making golden image for ASG
+  * not depend on region
+  * not depend on AWS account
+* ASG template - automaticale choose latest golden image
+* automative script to startup Wordpress and connect to DB
+* templatefile 
+
+# Outputs (1 page)
+
+* we successfully made this project
+  * flexibility of the code 
+
+* what we learn from this project
