@@ -170,17 +170,16 @@ VPC
 * userdata
   * automative script to startup Wordpress and connect to DB
 
-
 * wordpress is accessable through ALB by address <b>wordpress.yourdomain.com</b>
 
-# Outputs (1 page)
+# Outputs / resume (1 page)
 
 * we successfully made this project
   * flexibility of the code 
   * deploy into another region with a few clicks
   * expirience 3-tire architecture
   * undestood every stage of the project, correlation between groups 
-  * 
-
+  
 * what we learn from this project 
+
 * how many time (hours) team members contribute to project
