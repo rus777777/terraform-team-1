@@ -3,8 +3,6 @@ resource "aws_security_group" "db" {
   name_prefix = "wordpress-db"
   vpc_id      = local.vpc_id
 
-  # Your code goes here 
-
   ingress {
     description = "MySQL"
     from_port   = 3306
@@ -19,6 +17,5 @@ resource "aws_security_group" "db" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  # Please do not change the code below
   tags = var.tags
 }

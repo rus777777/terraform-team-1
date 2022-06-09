@@ -51,13 +51,11 @@ variable "db_password" {
   description = "Please provide a value"
 }
 
-
 variable "publicly_accessible" {
   type        = string
   default     = ""
   description = "Please provide a value"
 }
-
 variable "vpc_bucket" {
   type        = string
   default     = ""
@@ -72,7 +70,6 @@ variable "number_of_instances" {
   type        = string
   default     = ""
   description = "Please provide a domain"
-
 }
 variable "cluster_engine" {
   type        = string
@@ -89,12 +86,12 @@ variable "cluster_instance_class" {
   default     = ""
   description = "Please provide a value"
 }
-variable "ZONEID" {
-  type        = string
-  default     = ""
-  description = "Please provide a zone id"
-}
-variable "DOMAIN" {
+# variable "ZONEID" {
+#   type        = string
+#   default     = ""
+#   description = "Please provide a zone id"
+# }
+variable "domain_name" {
   type        = string
   default     = ""
   description = "Please provide a zone id"

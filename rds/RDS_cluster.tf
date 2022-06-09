@@ -13,16 +13,18 @@ resource "aws_rds_cluster" "wordpress_db_cluster" {
   storage_encrypted       = true
 }
 resource "aws_rds_cluster_instance" "wordpress_cluster_instance" {
-  depends_on          = [aws_rds_cluster.wordpress_db_cluster]
-  apply_immediately   = true
-  promotion_tier      = count.index
   count               = var.number_of_instances
+  promotion_tier      = count.index
+
   identifier          = "wordpress-cluster-instance${format(count.index + 1)}"
   cluster_identifier  = aws_rds_cluster.wordpress_db_cluster.id
   instance_class      = var.cluster_instance_class
   engine              = aws_rds_cluster.wordpress_db_cluster.engine
   engine_version      = aws_rds_cluster.wordpress_db_cluster.engine_version
+
+  apply_immediately   = true
   publicly_accessible = true
 
+  depends_on          = [aws_rds_cluster.wordpress_db_cluster]
 }
 
