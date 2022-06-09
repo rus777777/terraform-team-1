@@ -17,6 +17,6 @@ module "vpc-t1" {
 }
 
 resource "aws_key_pair" "packer" {
-  key_name   = "packer"
+  key_name   = "packer_project_1"
   public_key = file("~/.ssh/id_rsa.pub")
 }
