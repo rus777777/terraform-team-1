@@ -100,3 +100,29 @@ https://docs.aws.amazon.com/whitepapers/latest/best-practices-wordpress/referenc
 
 - - -
 
+- - - 
+
+# Project 
+
+description
+
+# Project goals
+
+* Project tasks
+* How to negotatate with groups inside team
+
+# Org structure
+
+* Team leader
+* VPC group
+* RDS group
+* ASG group
+
+# Infrastructure architecture
+
+# VPC
+
+# RDS
+
+# ASG
+
