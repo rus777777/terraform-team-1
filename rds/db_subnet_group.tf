@@ -4,9 +4,8 @@ resource "aws_db_subnet_group" "this" {
   tags       = var.tags
 }
 # data "aws_availability_zones" "all" {}
-
 # output "AZ" {
-#   value = data.aws_availability_zones.all.names
+# value = data.aws_availability_zones.all.names
 # }
 
 # resource "aws_default_subnet" "default_az1" {

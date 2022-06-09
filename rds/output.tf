@@ -26,3 +26,18 @@ output "name" {
 output "username" {
   value = var.db_username
 }
+output "cluster_endpoint" {
+  value = aws_rds_cluster.wordpress_db_cluster.endpoint
+}
+
+output "depends_on" {
+  value = aws_rds_cluster_instance.wordpress_cluster_instance[*].id
+}
+
+output "writer_53" {
+  value = aws_route53_record.writer.name
+}
+
+output "readers_53" {
+  value = aws_route53_record.readers.*.name
+}

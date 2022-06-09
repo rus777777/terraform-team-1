@@ -12,12 +12,8 @@ number_of_instances    = 1
 cluster_engine         = "aurora-mysql"
 cluster_engine_version = "5.7.mysql_aurora.2.03.2"
 cluster_instance_class = "db.t2.small"
-
-
-
-domain = "zmileproperties.com"
-
-# ZONEID = "Z00684521QJRR8IXV8VWM"
+ZONEID                 = "Z0314190IVE0BV3G8215"
+DOMAIN                 = "fabpartybybee.com"
 
 tags = {
   Name = "Terraform project"

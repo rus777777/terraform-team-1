@@ -68,11 +68,6 @@ variable "subnet_ids" {
   type        = list(string)
   default     = []
 }
-variable "domain" {
-  type        = string
-  default     = ""
-  description = "Please provide a domain"
-}
 variable "number_of_instances" {
   type        = string
   default     = ""
@@ -94,9 +89,13 @@ variable "cluster_instance_class" {
   default     = ""
   description = "Please provide a value"
 }
-# variable "ZONEID" {
-#   type        = string
-#   default     = ""
-#   description = "Please provide a zone id"
-
-# }
+variable "ZONEID" {
+  type        = string
+  default     = ""
+  description = "Please provide a zone id"
+}
+variable "DOMAIN" {
+  type        = string
+  default     = ""
+  description = "Please provide a zone id"
+}
