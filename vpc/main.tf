@@ -15,3 +15,8 @@ module "vpc-t1" {
   tags = var.tags
 
 }
+
+resource "aws_key_pair" "packer" {
+  key_name   = "packer"
+  public_key = file("~/.ssh/id_rsa.pub")
+}

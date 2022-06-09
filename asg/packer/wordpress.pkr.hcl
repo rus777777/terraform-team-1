@@ -1,4 +1,5 @@
 packer {
+
   required_plugins {
     amazon = {
       version = ">= 0.0.1"
@@ -56,3 +57,4 @@ build {
   //   note = "Waiting for your verification"
   // }
 }
+
