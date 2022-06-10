@@ -47,16 +47,7 @@ build {
       "sudo wget https://wordpress.org/wordpress-4.0.32.tar.gz",
       "sudo tar -xf wordpress-4.0.32.tar.gz -C /var/www/html/",
       "sudo mv /var/www/html/wordpress/* /var/www/html/",
-      #"sudo chown -R apache:apache /var/www/html/",
-
-      "cd /var/www/html/",
-      "sudo cp wp-config-sample.php wp-config.php",
-      "sudo sed -i \"s/database_name_here/${var.db_name}/g\" wp-config.php",
-      "sudo sed -i \"s/username_here/${var.db_username}/g\" wp-config.php",
-      "sudo sed -i \"s/password_here/${var.db_password}/g\" wp-config.php",
-      "sudo sed -i \"s/localhost/writer.${var.domain_name}/g\" wp-config.php",
       "sudo chown -R apache:apache /var/www/html/",
-
       "sudo systemctl enable httpd",
       "sudo systemctl restart httpd"
     ]
