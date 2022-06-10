@@ -17,7 +17,7 @@ cat terraform.tfvars
 echo ""
 echo "**********************************"
 echo ""
-terraform init -upgrade && terraform apply -auto-approve
+terraform init -upgrade && terraform apply -auto-approve -var-file=example.tfvars
 cd ..
 
 echo ""
@@ -26,6 +26,7 @@ echo "create golden image with wordpress"
 echo "**********************************"
 echo ""
 cd  packer
+#bash localscript.sh
 make build
 cd ..
 
@@ -42,7 +43,7 @@ cat terraform.tfvars
 echo ""
 echo "**********************************"
 echo ""
-terraform init && terraform apply -auto-approve
+terraform init && terraform apply -auto-approve -var-file=example.tfvars
 cd ..
 
 echo ""
@@ -58,7 +59,7 @@ cat terraform.tfvars
 echo ""
 echo "**********************************"
 echo ""
-terraform init && terraform apply -auto-approve
+terraform init && terraform apply -auto-approve -var-file=example.tfvars
 cd ..
 
 echo ""
