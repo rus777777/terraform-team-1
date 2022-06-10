@@ -2,23 +2,6 @@
 clear
 echo "Start:" > t.tmp
 date >> t.tmp
-echo ""
-echo "**********************************"
-echo "create VPC"
-echo "**********************************"
-echo ""
-cd vpc
-echo ""
-echo "Input parameters:"
-echo ""
-env | grep TF_VAR_*
-env | grep PKR_VAR_*
-cat terraform.tfvars
-echo ""
-echo "**********************************"
-echo ""
-terraform init -upgrade && terraform apply -auto-approve -var-file=example.tfvars
-cd ..
 
 echo ""
 echo "**********************************"
@@ -26,39 +9,15 @@ echo "create golden image with wordpress"
 echo "**********************************"
 echo ""
 cd  packer
-#bash localscript.sh
 make build
 cd ..
 
 echo ""
 echo "**********************************"
-echo "create RDS"
+echo "create Project"
 echo "**********************************"
 echo ""
-cd rds
-echo ""
-echo "Input parameters:"
-echo ""
-cat terraform.tfvars
-echo ""
-echo "**********************************"
-echo ""
-terraform init && terraform apply -auto-approve -var-file=example.tfvars
-cd ..
-
-echo ""
-echo "**********************************"
-echo "create ALB/ASG"
-echo "**********************************"
-echo ""
-cd asg
-echo ""
-echo "Input parameters:"
-echo ""
-cat terraform.tfvars
-echo ""
-echo "**********************************"
-echo ""
+cd _release
 terraform init && terraform apply -auto-approve -var-file=example.tfvars
 cd ..
 
