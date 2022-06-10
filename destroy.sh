@@ -8,7 +8,7 @@ echo "destroy ALB/ASG"
 echo "**********************************"
 echo ""
 cd asg
-terraform destroy -auto-approve
+terraform destroy -auto-approve -var-file=example.tfvars
 cd ..
 
 echo ""
@@ -17,7 +17,7 @@ echo "destroy RDS"
 echo "**********************************"
 echo ""
 cd rds
-terraform destroy -auto-approve
+terraform destroy -auto-approve -var-file=example.tfvars
 cd ..
 
 
@@ -27,7 +27,7 @@ echo "destroy VPC"
 echo "**********************************"
 echo ""
 cd vpc
-terraform destroy -auto-approve
+terraform destroy -auto-approve -var-file=example.tfvars
 cd ..
 
 echo ""
