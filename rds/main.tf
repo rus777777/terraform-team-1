@@ -1,23 +1,31 @@
 # read data from created VPC
-data "terraform_remote_state" "vpc" {
-  backend = "s3"
-  config = {
-    # you shoud have S3 backet with name: terraform-tfstate-<Account_ID> 
-    bucket = "terraform-tfstate-${local.account_id}"
+# data "terraform_remote_state" "vpc" {
+#   backend = "s3"
+#   config = {
+#     # you shoud have S3 backet with name: terraform-tfstate-<Account_ID> 
+#     bucket = "terraform-tfstate-${local.account_id}"
 
-    key    = "project-team-1/dev/vpc"
-    region = "us-east-1"
-  }
-}
+#     key    = "project-team-1/dev/vpc"
+#     region = "us-east-1"
+#   }
+# }
 
 data "aws_caller_identity" "current" {}
+
 locals {
   account_id = data.aws_caller_identity.current.account_id
-  vpc_id     = data.terraform_remote_state.vpc.outputs.vpc_id
 
-  pr1 = data.terraform_remote_state.vpc.outputs.private_subnet1
-  pr2 = data.terraform_remote_state.vpc.outputs.private_subnet2
-  pr3 = data.terraform_remote_state.vpc.outputs.private_subnet3
+  # data from VPC backend S3
+  # vpc_id     = data.terraform_remote_state.vpc.outputs.vpc_id
+  # pr1 = data.terraform_remote_state.vpc.outputs.private_subnet1
+  # pr2 = data.terraform_remote_state.vpc.outputs.private_subnet2
+  # pr3 = data.terraform_remote_state.vpc.outputs.private_subnet3
+
+  vpc_id = var.vpc_id
+  pr1    = var.private_subnet_name_1
+  pr2    = var.private_subnet_name_2
+  pr3    = var.private_subnet_name_3
+
 }
 
 # resource "random_password" "password" {

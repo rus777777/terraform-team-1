@@ -1,13 +1,8 @@
 #region             = "us-east-1"           # declare as export variable TF_VAR_region
-
-allocated_storage = 20
-engine            = "mysql"
-engine_version    = "5.7"
-instance_class    = "db.t3.micro"
-
 #db_name                = "wordpress"        # declare as export variable TF_VAR_db_name
 #db_username            = "admin"            # declare as export variable TF_VAR_db_username
 #db_password            = ""                 # declare as export variable TF_VAR_db_password
+#domain_name            = "budaichiev.com"   # declare as export variable TF_VAR_domain_name
 
 publicly_accessible    = false
 number_of_instances    = 1 # min 1 - for writer, if you need 3 readers set parameter to 4 
@@ -18,8 +13,12 @@ tags = {
   Name = "Terraform project"
 }
 
+# for RDS instance
+# allocated_storage = 20
+# engine            = "mysql"
+# engine_version    = "5.7"
+# instance_class    = "db.t3.micro"
 
 
-#domain_name            = "budaichiev.com"             # declare as export variable TF_VAR_domain_name
 
 

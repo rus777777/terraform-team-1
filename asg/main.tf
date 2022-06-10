@@ -1,14 +1,14 @@
 data "aws_caller_identity" "current" {}
 
-data "terraform_remote_state" "vpc" {
-  backend = "s3"
-  config = {
-    # you shoud have S3 backet with name: terraform-tfstate-<Account_ID> 
-    bucket = "terraform-tfstate-${local.account_id}"
-    key    = "project-team-1/dev/vpc"
-    region = "us-east-1"
-  }
-}
+# data "terraform_remote_state" "vpc" {
+#   backend = "s3"
+#   config = {
+#     # you shoud have S3 backet with name: terraform-tfstate-<Account_ID> 
+#     bucket = "terraform-tfstate-${local.account_id}"
+#     key    = "project-team-1/dev/vpc"
+#     region = "us-east-1"
+#   }
+# }
 
 data "aws_ami" "this" {
   most_recent = true
@@ -21,25 +21,36 @@ data "aws_ami" "this" {
 }
 
 locals {
-  vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
-  ps1    = data.terraform_remote_state.vpc.outputs.public_subnet1
-  ps2    = data.terraform_remote_state.vpc.outputs.public_subnet2
-  ps3    = data.terraform_remote_state.vpc.outputs.public_subnet3
 
-  pr1 = data.terraform_remote_state.vpc.outputs.private_subnet1
-  pr2 = data.terraform_remote_state.vpc.outputs.private_subnet2
-  pr3 = data.terraform_remote_state.vpc.outputs.private_subnet3
+  # from backend S3
+  # vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
+  # ps1    = data.terraform_remote_state.vpc.outputs.public_subnet1
+  # ps2    = data.terraform_remote_state.vpc.outputs.public_subnet2
+  # ps3    = data.terraform_remote_state.vpc.outputs.public_subnet3
 
-  az1 = data.terraform_remote_state.vpc.outputs.az1
-  az2 = data.terraform_remote_state.vpc.outputs.az2
-  az3 = data.terraform_remote_state.vpc.outputs.az3
+  # pr1 = data.terraform_remote_state.vpc.outputs.private_subnet1
+  # pr2 = data.terraform_remote_state.vpc.outputs.private_subnet2
+  # pr3 = data.terraform_remote_state.vpc.outputs.private_subnet3
+
+  # az1 = data.terraform_remote_state.vpc.outputs.az1
+  # az2 = data.terraform_remote_state.vpc.outputs.az2
+  # az3 = data.terraform_remote_state.vpc.outputs.az3
+
+  vpc_id = var.vpc_id
+  ps1    = var.public_subnet_name_1
+  ps2    = var.public_subnet_name_2
+  ps3    = var.public_subnet_name_3
+
+  pr1    = var.private_subnet_name_1
+  pr2    = var.private_subnet_name_2
+  pr3    = var.private_subnet_name_3
 
   account_id = data.aws_caller_identity.current.account_id
   ami_id     = data.aws_ami.this.image_id
 
-  db_name = var.db_name
-  db_user = var.db_username
-  db_host = "writer.${var.domain_name}"
+  # db_name = var.db_name
+  # db_username = var.db_username
+  # db_host = "writer.${var.domain_name}"
 }
 
 data "aws_route53_zone" "this" {
@@ -66,13 +77,13 @@ resource "aws_launch_template" "this" {
   instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.app.id]
 
-  user_data = base64encode(templatefile("user_data.sh.tpl", {
-    db_name = local.db_name,
-    db_user = local.db_user,
-    #db_password = data.aws_ssm_parameter.db.value,
-    db_password = var.db_password,
-    db_host     = local.db_host
-  }))
+  # user_data = base64encode(templatefile("user_data.sh.tpl", {
+  #   db_name = local.db_name,
+  #   db_user = local.db_username,
+  #   #db_password = data.aws_ssm_parameter.db.value,
+  #   db_password = var.db_password,
+  #   db_host     = local.db_host
+  # }))
 }
 
 resource "aws_autoscaling_group" "this" {

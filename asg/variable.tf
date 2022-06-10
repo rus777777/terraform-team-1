@@ -74,3 +74,47 @@ variable "db_password" {
   default     = ""
   description = "Please provide DB password"
 }
+
+
+
+variable "vpc_id" {
+  type        = string
+  default     = ""
+  description = "Please provide a VPC ID"
+}
+
+variable "private_subnet_name_1" {
+  type        = string
+  default     = ""
+  description = "Please provide the name private subnet #1"
+}
+
+variable "private_subnet_name_2" {
+  type        = string
+  default     = ""
+  description = "Please provide the name private subnet #2"
+}
+
+variable "private_subnet_name_3" {
+  type        = string
+  default     = ""
+  description = "Please provide the name private subnet #3"
+}
+
+variable "public_subnet_name_1" {
+  type        = string
+  default     = ""
+  description = "Please provide the name public subnet #1"
+}
+
+variable "public_subnet_name_2" {
+  type        = string
+  default     = ""
+  description = "Please provide the name public subnet #2"
+}
+
+variable "public_subnet_name_3" {
+  type        = string
+  default     = ""
+  description = "Please provide the name public subnet #3"
+}

@@ -13,6 +13,7 @@ locals {
     x if x != local.writer
   ])
 }
+
 resource "aws_route53_record" "writer" {
   zone_id = data.aws_route53_zone.this.zone_id
   name    = "writer.${var.domain_name}"
