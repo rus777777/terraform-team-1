@@ -48,7 +48,7 @@ resource "aws_launch_template" "this" {
   instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.app.id]
 
-user_data =<<EOF
+user_data =base64encode(<<EOF
 #!/bin/bash
 cd /var/www/html/
 cp wp-config-sample.php wp-config.php
@@ -60,6 +60,7 @@ chown -R apache:apache /var/www/html/
 #systemctl enable httpd
 #systemctl start httpd
 EOF
+)
 
 }
 
