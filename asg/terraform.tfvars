@@ -8,6 +8,9 @@ tags = {
   Name = "Terraform Project 1"
 }
 #domain_name = "budaichiev.com"             # declare as export variable TF_VAR_domain_name
+#db_name                = "wordpress"        # declare as export variable TF_VAR_db_name
+#db_username            = "admin"            # declare as export variable TF_VAR_db_username
+
 
 enable_ASG_in_public_subnets = false
 

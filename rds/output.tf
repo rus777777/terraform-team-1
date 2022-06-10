@@ -24,7 +24,10 @@
 #   value = aws_db_instance.this.name
 # }
 
-output "username" {
+output "db_name" {
+  value = aws_rds_cluster.wordpress_db_cluster.database_name
+}
+output "db_username" {
   value = var.db_username
 }
 output "cluster_endpoint" {

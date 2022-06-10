@@ -10,15 +10,15 @@ data "terraform_remote_state" "vpc" {
   }
 }
 
-data "terraform_remote_state" "rds" {
-  backend = "s3"
-  config = {
-    # you shoud have S3 backet with name: terraform-tfstate-<Account_ID> 
-    bucket = "terraform-tfstate-${local.account_id}"
-    key    = "project-team-1/dev/rds"
-    region = "us-east-1"
-  }
-}
+# data "terraform_remote_state" "rds" {
+#   backend = "s3"
+#   config = {
+#     # you shoud have S3 backet with name: terraform-tfstate-<Account_ID> 
+#     bucket = "terraform-tfstate-${local.account_id}"
+#     key    = "project-team-1/dev/rds"
+#     region = "us-east-1"
+#   }
+# }
 
 data "aws_ami" "this" {
   most_recent = true
@@ -40,14 +40,22 @@ locals {
   pr2 = data.terraform_remote_state.vpc.outputs.private_subnet2
   pr3 = data.terraform_remote_state.vpc.outputs.private_subnet3
 
+  az1 = data.terraform_remote_state.vpc.outputs.az1
+  az2 = data.terraform_remote_state.vpc.outputs.az2
+  az3 = data.terraform_remote_state.vpc.outputs.az3
+
   account_id = data.aws_caller_identity.current.account_id
   ami_id     = data.aws_ami.this.image_id
 
-  db_name = data.terraform_remote_state.rds.outputs.name
-  db_user = data.terraform_remote_state.rds.outputs.username
+# data "terraform_remote_state" "rds" 
+  # db_name = data.terraform_remote_state.rds.outputs.db_name
+  # db_user = data.terraform_remote_state.rds.outputs.db_username
+  # db_host = data.terraform_remote_state.rds.outputs.address
 
-  db_host = data.terraform_remote_state.rds.outputs.address
-  db_port = data.terraform_remote_state.rds.outputs.port
+  db_name = var.db_name
+  db_user = var.db_username
+  db_host = "writer.${var.domain_name}"
+
 }
 
 # !!!!!!!!!! for test
@@ -72,7 +80,6 @@ data "aws_ssm_parameter" "db" {
   name = local.db_user
 }
 
-
 resource "aws_launch_template" "this" {
   name_prefix            = var.name_prefix
   image_id               = local.ami_id
@@ -84,7 +91,6 @@ resource "aws_launch_template" "this" {
     db_user     = local.db_user,
     db_password = data.aws_ssm_parameter.db.value,
     db_host     = local.db_host
-    db_port     = local.db_port
   }))
 }
 
@@ -102,7 +108,8 @@ resource "aws_autoscaling_group" "this" {
 
 resource "aws_elb" "this" {
   name    = "${var.name_prefix}-ELB"
-  subnets = [local.ps1, local.ps2, local.ps3]
+  subnets = [local.ps1, local.ps2, local.ps3] 
+  #availability_zones = [local.az1, local.az2, local.az3]
 
   listener {
     instance_port     = 80

@@ -59,16 +59,13 @@ variable "enable_ASG_in_public_subnets" {
   default     = true
   description = "Enable launch ASG instances in public subnets"
 }
-
-
-# variable "db_name" {
-#   type        = string
-#   default     = ""
-#   description = "Please provide a value"
-# }
-
-# variable "username" {
-#   type        = string
-#   default     = ""
-#   description = "Please provide a value"
-# }
+variable "db_name" {
+  type        = string
+  default     = ""
+  description = "Please provide a value"
+}
+variable "db_username" {
+  type        = string
+  default     = ""
+  description = "Please provide a value"
+}

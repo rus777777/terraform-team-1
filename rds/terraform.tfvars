@@ -1,24 +1,21 @@
 #region             = "us-east-1"           # declare as export variable TF_VAR_region
-region                 = "us-east-1"
 allocated_storage      = 20
 engine                 = "mysql"
 engine_version         = "5.7"
 instance_class         = "db.t3.micro"
 
-db_name                = "wordpress"
-db_username            = "admin"
+#db_name                = "wordpress"        # declare as export variable TF_VAR_db_name
+#db_username            = "admin"            # declare as export variable TF_VAR_db_username
 
 publicly_accessible    = false
-number_of_instances    = 1
+number_of_instances    = 1     # min 1 - for writer, > 1 - will create readers
 cluster_engine         = "aurora-mysql"
 cluster_engine_version = "5.7.mysql_aurora.2.03.2"
 cluster_instance_class = "db.t2.small"
 
-#ZONEID                 = "Z0314190IVE0BV3G8215"
-#domain_name            = "budaichiev.com" 
+#domain_name            = "budaichiev.com"             # declare as export variable TF_VAR_domain_name
 
 tags = {
   Name = "Terraform project"
 }
 
-#enable_RDS_in_public_subnets = false
