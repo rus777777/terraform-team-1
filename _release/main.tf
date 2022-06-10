@@ -15,11 +15,6 @@ module "vpc-t1" {
   tags = var.tags
 }
 
-resource "aws_key_pair" "packer" {
-  key_name   = "packer_project_1"
-  public_key = file("~/.ssh/id_rsa.pub")
-}
-
 # Remind! Create Packer image for ASG
 
 module "rds-t1" {
