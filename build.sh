@@ -25,9 +25,9 @@ echo "**********************************"
 echo "create golden image with wordpress"
 echo "**********************************"
 echo ""
-cd  asg/packer
+cd  packer
 make build
-cd ../..
+cd ..
 
 echo ""
 echo "**********************************"
