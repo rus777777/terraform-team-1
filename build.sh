@@ -18,7 +18,7 @@ echo "create Project"
 echo "**********************************"
 echo ""
 cd _release
-terraform init && terraform apply -auto-approve -var-file=example.tfvars
+terraform init && terraform apply -auto-approve 
 cd ..
 
 echo ""
