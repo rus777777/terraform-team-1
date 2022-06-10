@@ -21,8 +21,8 @@ resource "aws_route53_record" "writer" {
   records = [local.writer]
 }
 resource "aws_route53_record" "readers" {
-  count   = var.number_of_instances - 1
-  
+  count = var.number_of_instances - 1
+
   zone_id = data.aws_route53_zone.this.zone_id
   name    = "reader${count.index + 1}.${var.domain_name}"
   type    = "CNAME"

@@ -19,9 +19,9 @@ locals {
   # ps2        = data.terraform_remote_state.vpc.outputs.public_subnet2
   # ps3        = data.terraform_remote_state.vpc.outputs.public_subnet3
 
-  pr1        = data.terraform_remote_state.vpc.outputs.private_subnet1
-  pr2        = data.terraform_remote_state.vpc.outputs.private_subnet2
-  pr3        = data.terraform_remote_state.vpc.outputs.private_subnet3
+  pr1 = data.terraform_remote_state.vpc.outputs.private_subnet1
+  pr2 = data.terraform_remote_state.vpc.outputs.private_subnet2
+  pr3 = data.terraform_remote_state.vpc.outputs.private_subnet3
 
   # az1        = data.terraform_remote_state.vpc.outputs.az1
   # az2        = data.terraform_remote_state.vpc.outputs.az2
@@ -29,8 +29,8 @@ locals {
 }
 
 resource "random_password" "password" {
-  length           = 20
-  special          = false
+  length  = 20
+  special = false
 }
 
 resource "aws_ssm_parameter" "db_username" {

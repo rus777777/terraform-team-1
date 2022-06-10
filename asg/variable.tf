@@ -62,10 +62,15 @@ variable "enable_ASG_in_public_subnets" {
 variable "db_name" {
   type        = string
   default     = ""
-  description = "Please provide a value"
+  description = "Please provide DB name"
 }
 variable "db_username" {
   type        = string
   default     = ""
-  description = "Please provide a value"
+  description = "Please provide DB username"
+}
+variable "db_password" {
+  type        = string
+  default     = ""
+  description = "Please provide DB password"
 }

@@ -47,7 +47,7 @@ locals {
   account_id = data.aws_caller_identity.current.account_id
   ami_id     = data.aws_ami.this.image_id
 
-# data "terraform_remote_state" "rds" 
+  # data "terraform_remote_state" "rds" 
   # db_name = data.terraform_remote_state.rds.outputs.db_name
   # db_user = data.terraform_remote_state.rds.outputs.db_username
   # db_host = data.terraform_remote_state.rds.outputs.address
@@ -58,10 +58,6 @@ locals {
 
 }
 
-# !!!!!!!!!! for test
-output "db_host" {
-  value = local.db_host
-}
 
 data "aws_route53_zone" "this" {
   name         = var.domain_name
@@ -76,9 +72,10 @@ resource "aws_route53_record" "wordpress" {
   records = [aws_elb.this.dns_name]
 }
 
-data "aws_ssm_parameter" "db" {
-  name = local.db_user
-}
+# take password through Parameter Store
+# data "aws_ssm_parameter" "db" {
+#   name = local.db_user
+# }
 
 resource "aws_launch_template" "this" {
   name_prefix            = var.name_prefix
@@ -87,9 +84,10 @@ resource "aws_launch_template" "this" {
   vpc_security_group_ids = [aws_security_group.app.id]
 
   user_data = base64encode(templatefile("user_data.sh.tpl", {
-    db_name     = local.db_name,
-    db_user     = local.db_user,
-    db_password = data.aws_ssm_parameter.db.value,
+    db_name = local.db_name,
+    db_user = local.db_user,
+    #db_password = data.aws_ssm_parameter.db.value,
+    db_password = var.db_password,
     db_host     = local.db_host
   }))
 }
@@ -108,7 +106,7 @@ resource "aws_autoscaling_group" "this" {
 
 resource "aws_elb" "this" {
   name    = "${var.name_prefix}-ELB"
-  subnets = [local.ps1, local.ps2, local.ps3] 
+  subnets = [local.ps1, local.ps2, local.ps3]
   #availability_zones = [local.az1, local.az2, local.az3]
 
   listener {

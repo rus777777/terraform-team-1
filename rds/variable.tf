@@ -30,17 +30,17 @@ variable "instance_class" {
 variable "db_name" {
   type        = string
   default     = ""
-  description = "Please provide a value"
+  description = "Please provide DB name"
 }
 variable "db_username" {
   type        = string
   default     = ""
-  description = "Please provide a value"
+  description = "Please provide DB username"
 }
 variable "db_password" {
   type        = string
   default     = ""
-  description = "Please provide a value"
+  description = "Please provide DB password"
 }
 variable "publicly_accessible" {
   type        = string
