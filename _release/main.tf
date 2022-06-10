@@ -49,6 +49,14 @@ module "asg-t1" {
   db_password = var.db_password
   domain_name = var.domain_name
 
+  vpc_id                = module.vpc-t1.vpc_id
+  private_subnet_name_1 = module.vpc-t1.private_subnet1
+  private_subnet_name_2 = module.vpc-t1.private_subnet2
+  private_subnet_name_3 = module.vpc-t1.private_subnet3
+  public_subnet_name_1  = module.vpc-t1.public_subnet1
+  public_subnet_name_2  = module.vpc-t1.public_subnet2
+  public_subnet_name_3  = module.vpc-t1.public_subnet3
+
   name_prefix      = var.name_prefix
   instance_type    = var.instance_type
   desired_capacity = var.desired_capacity

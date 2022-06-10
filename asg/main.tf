@@ -61,7 +61,6 @@ chown -R apache:apache /var/www/html/
 #systemctl start httpd
 EOF
 )
-
 }
 
 resource "aws_autoscaling_group" "this" {
