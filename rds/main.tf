@@ -15,29 +15,21 @@ locals {
   account_id = data.aws_caller_identity.current.account_id
   vpc_id     = data.terraform_remote_state.vpc.outputs.vpc_id
 
-  # ps1        = data.terraform_remote_state.vpc.outputs.public_subnet1
-  # ps2        = data.terraform_remote_state.vpc.outputs.public_subnet2
-  # ps3        = data.terraform_remote_state.vpc.outputs.public_subnet3
-
   pr1 = data.terraform_remote_state.vpc.outputs.private_subnet1
   pr2 = data.terraform_remote_state.vpc.outputs.private_subnet2
   pr3 = data.terraform_remote_state.vpc.outputs.private_subnet3
-
-  # az1        = data.terraform_remote_state.vpc.outputs.az1
-  # az2        = data.terraform_remote_state.vpc.outputs.az2
-  # az3        = data.terraform_remote_state.vpc.outputs.az3
 }
 
-resource "random_password" "password" {
-  length  = 20
-  special = false
-}
+# resource "random_password" "password" {
+#   length  = 20
+#   special = false
+# }
 
-resource "aws_ssm_parameter" "db_username" {
-  name  = var.db_username
-  type  = "SecureString"
-  value = random_password.password.result
-}
+# resource "aws_ssm_parameter" "db_username" {
+#   name  = var.db_username
+#   type  = "SecureString"
+#   value = random_password.password.result
+# }
 
 # resource "aws_db_instance" "this" {
 #   allocated_storage      = var.allocated_storage

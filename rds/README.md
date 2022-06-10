@@ -1,6 +1,6 @@
 # Terraform project - Team-1 - RDS
 
-For team work:
+For team work you can use (for alone user does not need):
 
 1. create S3 bucket "terraform-tfstate-<Account_ID>" in region "us-east-1"
 2. create DynamoDB table "terraform-state-project1-rds" with LockID key

@@ -6,7 +6,8 @@ resource "aws_rds_cluster" "wordpress_db_cluster" {
 
   database_name   = var.db_name
   master_username = var.db_username
-  master_password = random_password.password.result
+  master_password = var.db_password
+  #master_password = random_password.password.result
 
   skip_final_snapshot     = true
   db_subnet_group_name    = aws_db_subnet_group.this.id
