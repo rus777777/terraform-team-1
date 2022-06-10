@@ -10,16 +10,6 @@ data "terraform_remote_state" "vpc" {
   }
 }
 
-# data "terraform_remote_state" "rds" {
-#   backend = "s3"
-#   config = {
-#     # you shoud have S3 backet with name: terraform-tfstate-<Account_ID> 
-#     bucket = "terraform-tfstate-${local.account_id}"
-#     key    = "project-team-1/dev/rds"
-#     region = "us-east-1"
-#   }
-# }
-
 data "aws_ami" "this" {
   most_recent = true
   owners      = [local.account_id]
@@ -47,17 +37,10 @@ locals {
   account_id = data.aws_caller_identity.current.account_id
   ami_id     = data.aws_ami.this.image_id
 
-  # data "terraform_remote_state" "rds" 
-  # db_name = data.terraform_remote_state.rds.outputs.db_name
-  # db_user = data.terraform_remote_state.rds.outputs.db_username
-  # db_host = data.terraform_remote_state.rds.outputs.address
-
   db_name = var.db_name
   db_user = var.db_username
   db_host = "writer.${var.domain_name}"
-
 }
-
 
 data "aws_route53_zone" "this" {
   name         = var.domain_name
@@ -173,14 +156,13 @@ resource "aws_security_group" "app" {
   }
 
   # for test purpose
-  ingress {
-    description = "ssh from ELB"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-    #security_groups = [aws_security_group.elb.id]
-  }
+  # ingress {
+  #   description = "ssh from ELB"
+  #   from_port   = 22
+  #   to_port     = 22
+  #   protocol    = "tcp"
+  #   cidr_blocks = ["0.0.0.0/0"]
+  # }
 
   egress {
     from_port        = 0

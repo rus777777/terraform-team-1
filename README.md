@@ -11,7 +11,11 @@ They look like:
 ```
 export TF_VAR_region=us-west-1
 export PKR_VAR_region=$TF_VAR_region
-export TF_VAR_domain_name=budaichiev.com
+export TF_VAR_domain_name=domain.com
+export TF_VAR_db_name=wordpress
+export TF_VAR_db_username=admin
+export TF_VAR_db_password=Passw0RDforDataBase
+
 ```
 
 # To build Project

@@ -6,5 +6,5 @@ sed -i "s/username_here/${db_user}/g" wp-config.php
 sed -i "s/password_here/${db_password}/g" wp-config.php
 sed -i "s/localhost/${db_host}/g" wp-config.php 
 chown -R apache:apache /var/www/html/
-systemctl enable httpd
-systemctl start httpd
+#systemctl enable httpd
+#systemctl start httpd

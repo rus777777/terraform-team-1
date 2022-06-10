@@ -40,7 +40,7 @@ build {
   provisioner "shell" {
     inline = [
       # telnet need for troubleshooting
-      "sudo yum install telnet -y",
+      # "sudo yum install telnet -y",
       "sudo yum install httpd -y",
       "sudo yum install php php-mysql -y",
       "sudo yum install wget -y",
@@ -48,8 +48,8 @@ build {
       "sudo tar -xf wordpress-4.0.32.tar.gz -C /var/www/html/",
       "sudo mv /var/www/html/wordpress/* /var/www/html/",
       "sudo chown -R apache:apache /var/www/html/",
-      # "sudo systemctl enable httpd",
-      # "sudo systemctl restart httpd"
+      "sudo systemctl enable httpd",
+      "sudo systemctl restart httpd"
     ]
   }
 
