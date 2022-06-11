@@ -1,8 +1,8 @@
-# region                 = "us-east-1"           # declare as export variable TF_VAR_region
-# domain_name            = "budaichiev.com"      # declare as export variable TF_VAR_domain_name
-# db_name                = "wordpress"           # declare as export variable TF_VAR_db_name
-# db_username            = "admin"               # declare as export variable TF_VAR_db_username
-# db_password            = "sdSDfdstSDF23vsfgdf" # declare as export variable TF_VAR_db_password
+# region                 = "us-east-1"                    # declare as export variable TF_VAR_region
+# domain_name            = "<your_domain_name>.com"       # declare as export variable TF_VAR_domain_name
+# db_name                = "wordpress"                    # declare as export variable TF_VAR_db_name
+# db_username            = "admin"                        # declare as export variable TF_VAR_db_username
+# db_password            = "sdSDfdstSDF23vsfgdf"          # declare as export variable TF_VAR_db_password
 
 # VPC variables
 
@@ -13,7 +13,7 @@ public_subnet3     = "10.0.3.0/24"
 private_subnet1    = "10.0.101.0/24"
 private_subnet2    = "10.0.102.0/24"
 private_subnet3    = "10.0.103.0/24"
-enable_nat_gateway = false
+enable_nat_gateway = true
 
 tags = {
   Name = "Terraform project"
@@ -23,7 +23,7 @@ tags = {
 # RDS variables
 
 publicly_accessible    = false
-number_of_instances    = 1 # min 1 - for writer, if you need 3 readers set parameter to 4 
+number_of_instances    = 4                            # min 1 - for writer, if you need 3 readers set parameter to 4 
 cluster_engine         = "aurora-mysql"
 cluster_engine_version = "5.7.mysql_aurora.2.03.2"
 cluster_instance_class = "db.t2.small"

@@ -5,7 +5,7 @@ date >> t.tmp
 
 echo ""
 echo "**********************************"
-echo "create golden image with wordpress"
+echo "Create golden image with wordpress"
 echo "**********************************"
 echo ""
 cd  packer
@@ -14,7 +14,7 @@ cd ..
 
 echo ""
 echo "**********************************"
-echo "create Project"
+echo "Create Project"
 echo "**********************************"
 echo ""
 cd _release
@@ -24,13 +24,13 @@ cd ..
 echo ""
 echo ""
 echo "**********************************"
-echo "Finish! :)"
+echo "Project created!"
 echo "**********************************"
 echo ""
-echo "Finish:" >> t.tmp
+echo "End:" >> t.tmp
 date >> t.tmp
 cat t.tmp
 rm -rf t.tmp
 
 
-# bash start.sh
+# bash build.sh

@@ -15,10 +15,10 @@ cd ..
 echo ""
 echo ""
 echo "**********************************"
-echo "Finish! :)"
+echo "Project destroyed"
 echo "**********************************"
 echo ""
-echo "Finish:" >> td.tmp
+echo "End:" >> td.tmp
 date >> td.tmp
 cat td.tmp
 rm -rf td.tmp
