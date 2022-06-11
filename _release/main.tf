@@ -15,7 +15,7 @@ module "vpc-t1" {
   tags = var.tags
 }
 
-# Remind! Create Packer image for ASG
+# Remind! Create golden image for ASG by Packer
 
 module "rds-t1" {
   source = "../rds"
