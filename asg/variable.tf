@@ -12,12 +12,6 @@ variable "name_prefix" {
   type        = string
   default     = ""
 }
-variable "image_id" {
-  description = "Provide a value"
-  type        = string
-  default     = ""
-}
-
 variable "instance_type" {
   description = "Provide a value"
   type        = string
@@ -74,8 +68,6 @@ variable "db_password" {
   default     = ""
   description = "Please provide DB password"
 }
-
-
 
 variable "vpc_id" {
   type        = string

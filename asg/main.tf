@@ -38,7 +38,7 @@ resource "aws_route53_record" "wordpress" {
   zone_id = data.aws_route53_zone.this.zone_id
   name    = "wordpress.${var.domain_name}"
   type    = "CNAME"
-  ttl     = "60" # descrease to test purpose, deafult 300
+  ttl     = "60"                                  # descrease to test purpose, deafult 300
   records = [aws_elb.this.dns_name]
 }
 
