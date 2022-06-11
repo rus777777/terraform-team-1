@@ -110,3 +110,28 @@ variable "public_subnet_name_3" {
   default     = ""
   description = "Please provide the name public subnet #3"
 }
+
+# site variables
+
+# variable "site_title" {
+#   type        = string
+#   default     = ""
+#   description = "Please provide site title"
+# }
+# variable "site_admin_user" {
+#   type        = string
+#   default     = ""
+#   description = "Please provide site admin user"
+# }
+# variable "site_admin_password" {
+#   type        = string
+#   default     = ""
+#   description = "Please provide site admin password"
+# }
+# variable "site_admin_email" {
+#   type        = string
+#   default     = ""
+#   description = "Please provide site admin email"
+# }
+
+

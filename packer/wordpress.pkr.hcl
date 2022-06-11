@@ -10,7 +10,7 @@ packer {
 source "amazon-ebs" "image" {
   ami_name             = "golden-image-project-1-{{timestamp}}"
   ssh_private_key_file = "/home/ec2-user/.ssh/id_rsa"
-  ssh_keypair_name     = "packer_project_1"                         # from VM where you launch this code
+  ssh_keypair_name     = "packer_project_1" # from VM where you launch this code
   instance_type        = "t2.micro"
   ssh_username         = "ec2-user"
   region               = var.region

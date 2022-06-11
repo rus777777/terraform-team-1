@@ -18,7 +18,7 @@ echo "Create Project"
 echo "**********************************"
 echo ""
 cd _release
-terraform init && terraform apply -auto-approve 
+terraform init -upgrade && terraform apply -auto-approve 
 cd ..
 
 echo ""
