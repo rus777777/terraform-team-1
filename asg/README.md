@@ -19,10 +19,9 @@ This repo create ASG that scales up to 3 replicas, based on the LB traffic. Ther
 
 ## Providers
 Name            | Version
-----------------|------------
+--------------- | -----------
   Terraform     | v1.1.1
-----------------|------------
-  AWS           |  4.17.1
+  AWS           | 4.17.1
 
 
 ## Usage
