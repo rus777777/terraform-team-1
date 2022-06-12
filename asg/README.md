@@ -4,7 +4,7 @@
 ## Table of Contents
 ```
 ```
-1. [General info]
+1. [General info](https://docs.aws.amazon.com/autoscaling/ec2/userguide/auto-scaling-groups.html)
 
 2. [Providers](https://github.com/rus777777/terraform-team-1/blob/main/asg/provider.tf)
 
@@ -19,8 +19,10 @@ This repo create ASG that scales up to 3 replicas, based on the LB traffic. Ther
 
 ## Providers
 Name            | Version
-----------------|---------
-Terraform       | v1.1.1
+----------------|------------
+  Terraform     | v1.1.1
+----------------|------------
+  AWS           |  4.17.1
 
 
 ## Usage
