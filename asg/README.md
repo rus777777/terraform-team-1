@@ -8,7 +8,7 @@
 
 2. [Providers](https://github.com/rus777777/terraform-team-1/blob/main/asg/provider.tf)
 
-3. [Usage](https://github.com/rus777777/terraform-team-1/blob/main/asg/main.tf)
+3. [Usage](https://github.com/rus777777/terraform-team-1/blob/test/_release/main.tf)
 
 3. [Variables](https://github.com/rus777777/terraform-team-1/blob/main/asg/variable.tf) / [Environment Variables](https://github.com/rus777777/terraform-team-1/blob/main/asg/example.tfvars)
 4. [Packer](https://github.com/rus777777/terraform-team-1/blob/main/packer/README.md)
@@ -27,106 +27,30 @@ Name            | Version
 ## Usage
 
 ```
-resource "aws_autoscaling_group" "this" {
-  vpc_zone_identifier = var.enable_ASG_in_public_subnets ? [local.ps1, local.ps2, local.ps3] : [local.pr1, local.pr2, local.pr3]
-  desired_capacity    = var.desired_capacity
-  max_size            = var.max_size
-  min_size            = var.min_size
+module "asg-t1" {
+  source = "../asg"
 
-  launch_template {
-    id      = aws_launch_template.this.id
-    version = "$Latest"
-  }
+  region      = var.region
+  db_name     = var.db_name
+  db_username = var.db_username
+  db_password = var.db_password
+  domain_name = var.domain_name
+
+  vpc_id                = module.vpc-t1.vpc_id
+  private_subnet_name_1 = module.vpc-t1.private_subnet1
+  private_subnet_name_2 = module.vpc-t1.private_subnet2
+  private_subnet_name_3 = module.vpc-t1.private_subnet3
+  public_subnet_name_1  = module.vpc-t1.public_subnet1
+  public_subnet_name_2  = module.vpc-t1.public_subnet2
+  public_subnet_name_3  = module.vpc-t1.public_subnet3
+
+  name_prefix      = var.name_prefix
+  instance_type    = var.instance_type
+  desired_capacity = var.desired_capacity
+  max_size         = var.max_size
+  min_size         = var.min_size
+  tags             = var.tags
+
+  enable_ASG_in_public_subnets = var.enable_ASG_in_public_subnets
 }
-
-resource "aws_elb" "this" {
-  name    = "${var.name_prefix}-ELB"
-  subnets = [local.ps1, local.ps2, local.ps3]
-  #availability_zones = [local.az1, local.az2, local.az3]
-
-  listener {
-    instance_port     = 80
-    instance_protocol = "http"
-    lb_port           = 80
-    lb_protocol       = "http"
-  }
-  health_check {
-    healthy_threshold   = 2
-    unhealthy_threshold = 2
-    timeout             = 3
-    target              = "TCP:80"
-    interval            = 30
-  }
-  cross_zone_load_balancing   = true
-  idle_timeout                = 400
-  connection_draining         = true
-  connection_draining_timeout = 400
-
-  security_groups = [aws_security_group.elb.id]
-}
-
-resource "aws_autoscaling_attachment" "asg_attachment_this" {
-  autoscaling_group_name = aws_autoscaling_group.this.id
-  elb                    = aws_elb.this.id
-}
-
-resource "aws_security_group" "elb" {
-  name        = "TF-ELB"
-  description = "Allow HTTP inbound traffic"
-  vpc_id      = local.vpc_id
-
-  ingress {
-    description = "http from Internet"
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
-
-  tags = var.tags
-}
-
-resource "aws_security_group" "app" {
-  name        = "TF-APP"
-  description = "Allow HTTP inbound traffic"
-  vpc_id      = local.vpc_id
-
-  ingress {
-    description     = "http from ELB"
-    from_port       = 80
-    to_port         = 80
-    protocol        = "tcp"
-    security_groups = [aws_security_group.elb.id]
-  }
-
-  # for test purpose
-  # ingress {
-  #   description = "ssh from ELB"
-  #   from_port   = 22
-  #   to_port     = 22
-  #   protocol    = "tcp"
-  #   cidr_blocks = ["0.0.0.0/0"]
-  # }
-
-  egress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
-
-  tags = var.tags
-}
-
-
-
 ```
