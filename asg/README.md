@@ -15,9 +15,11 @@
 
 
 ## General info
-This ASG can be scale up in 3 Availability Zones. There will be at least 1 instance that host wordpress website
+This ASG scales across 3 Availability Zones.
+The Auto Scaling group is accessible from the Application Load Balancer, while the Elastic Load Balancer is connected via the Internet.
+ASG Template - Automatically selects the latest golden image
+Elastic Load Balancer is on public subnets, Auto Scaling Group is on private subnets.
 
-This repo create ASG that scales up to 3 replicas, based on the LB traffic. There will be at least 1 instance that host wordpress website. 
 
 ## Providers
 Name                  | Version             |
