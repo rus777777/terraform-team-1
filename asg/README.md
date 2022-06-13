@@ -1,21 +1,23 @@
 # ASG for AWS
 ### This project will create Auto Scaling Group (ASG) a Three-Tier application on AWS.
 
+
 ## Table of Contents
-```
-```
-1. [General info](https://docs.aws.amazon.com/autoscaling/ec2/userguide/auto-scaling-groups.html)
+
+1. [General info](https://github.com/rus777777/terraform-team-1/blob/main/asg/main.tf)
 
 2. [Providers](https://github.com/rus777777/terraform-team-1/blob/main/asg/provider.tf)
 
 3. [Usage](https://github.com/rus777777/terraform-team-1/blob/test/_release/main.tf)
 
-3. [Variables](https://github.com/rus777777/terraform-team-1/blob/main/asg/variable.tf) / [Environment Variables](https://github.com/rus777777/terraform-team-1/blob/main/asg/example.tfvars)
+3. [Variables](https://github.com/rus777777/terraform-team-1/blob/main/asg/variable.tf) 
 4. [Packer](https://github.com/rus777777/terraform-team-1/blob/main/packer/README.md)
 
 
 ## General info
-This repo create ASG that scales up to 3 replicas, based on the LB traffic. There will be at least 1 instance that host wordpress website that has static IP.
+This ASG can be scale up in 3 Availability Zones. There will be at least 1 instance that host wordpress website
+
+This repo create ASG that scales up to 3 replicas, based on the LB traffic. There will be at least 1 instance that host wordpress website. 
 
 ## Providers
 Name                  | Version             |
