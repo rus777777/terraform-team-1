@@ -17,7 +17,7 @@
 ## General info
 This ASG scales across 3 Availability Zones.
 The Auto Scaling group is accessible from the Application Load Balancer, while the Elastic Load Balancer is connected via the Internet.
-ASG Template - Automatically selects the latest golden image
+ASG Template - Automatically selects the latest golden image. 
 Elastic Load Balancer is on public subnets, Auto Scaling Group is on private subnets.
 
 
