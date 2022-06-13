@@ -15,9 +15,9 @@
 
 
 ## General info
-This ASG scales across 3 Availability Zones.
-The Auto Scaling group is accessible from the Application Load Balancer, while the Elastic Load Balancer is connected via the Internet.
-ASG Template - Automatically selects the latest golden image. 
+This ASG scales across 3 Availability Zones in our VPC.
+The WordPress at instance(s) of Auto Scaling group is accessible from the Elastic Load Balancer, while the Elastic Load Balancer is accessable from the Internet through IGW.
+ASG launch template - Automatically selects the latest golden image with pre-installed web server and wordpress services.
 Elastic Load Balancer is on public subnets, Auto Scaling Group is on private subnets.
 
 
